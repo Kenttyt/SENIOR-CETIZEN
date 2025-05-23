@@ -393,11 +393,12 @@
       margin: 20px auto;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       border-radius: 10px;
-      overflow-x: auto;
+      overflow-x: hidden;
     }
     table {
       width: 100%;
       border-collapse: collapse;
+      table-layout: fixed;
     }
     thead th {
       position: sticky;
@@ -406,12 +407,17 @@
       color: #000;
       border: 1px solid #ddd;
       padding: 8px;
+      word-wrap: break-word;
+      overflow: hidden;
     }
     tbody td {
       border: 1px solid #ddd;
       padding: 8px;
       font-size: 1em;
       background-color: #f5f5dc;
+      word-wrap: break-word;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     tr:nth-child(even) {
       background-color: #f2f2f2;
@@ -448,7 +454,7 @@
       }
     }
     .modal {
-      margin-top:50px;
+      margin-top: 0;
       display: none;
       position: fixed;
       z-index: 999;
@@ -461,9 +467,10 @@
     }
     .modal-content {
       background-color: #fff;
-      margin: 15% auto;
+      margin: 10% auto;
       padding: 30px;
       border-radius: 12px;
+      width: 90%;
       max-width: 500px;
       text-align: center;
       font-size: 1.2em;
@@ -490,11 +497,11 @@
     /* Add/modify these styles in your existing CSS */
 
     #reader {
-      width: 100% !important; /* Override any inline styles */
-      max-width: 500px !important; /* Maximum width for larger screens */
+      width: 100% !important;
+      max-width: 500px !important;
       margin: 0 auto !important;
-      height: auto !important; /* Allow height to adjust proportionally */
-      min-height: 300px; /* Minimum height to ensure visibility */
+      height: auto !important;
+      min-height: 300px;
     }
 
     #reader video {
@@ -504,13 +511,12 @@
     }
 
     .container1 {
-      width: 95%; /* Slightly less than full width */
+      width: 95%;
       max-width: 600px;
       margin: 20px auto;
       padding: 15px;
     }
 
-    /* Media queries for different screen sizes */
     @media (max-width: 768px) {
       #reader {
         max-width: 100%;
@@ -522,9 +528,14 @@
       }
       
       .modal-content {
-        width: 90%;
-        margin: 30% auto;
+        margin: 5% auto;
         padding: 20px;
+        width: 95%;
+      }
+      
+      tbody td, thead th {
+        padding: 6px 4px;
+        font-size: 0.9em;
       }
     }
 
@@ -540,13 +551,26 @@
       .date {
         font-size: 1.2em;
       }
-    }
-
-    /* Improve modal responsiveness */
-    .modal-content {
-      width: 90%;
-      max-width: 400px;
-      margin: 20% auto;
+      
+      .modal-content {
+        margin: 2% auto;
+        padding: 15px;
+        width: 98%;
+      }
+      
+      #modal-name {
+        font-size: 1.5em !important;
+      }
+      
+      .contribution-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      tbody td, thead th {
+        padding: 4px 2px;
+        font-size: 0.8em;
+      }
     }
 
     /* Action buttons container styles */

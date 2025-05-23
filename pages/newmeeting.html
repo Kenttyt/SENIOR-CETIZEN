@@ -794,11 +794,17 @@
     setInterval(updateDateTime, 1000);
     updateDateTime();
 
+    // Helper function to display message in the scanner result area
+    function displayScannerMessage(message) {
+      document.getElementById("scanned-result").innerHTML = 
+        `<span style="color: #000000; word-break: break-all; display: inline-block; width: 100%;">${message}</span>`;
+    }
+
     function startScanner() {
       if (scannerStarted) return;
       
       // Show loading state
-      document.getElementById("scanned-result").textContent = "Initializing camera...";
+      displayScannerMessage("Initializing camera...");
       document.getElementById("reader").style.display = "block";
       document.getElementById("start-button").style.display = "none";
       document.getElementById("retry-button").classList.add("hidden");
@@ -820,7 +826,7 @@
       // Detect mobile devices
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       
-      // Add more informative error handling
+      // Update the camera error handling function
       function handleCameraError(err) {
         console.error("Camera error:", err);
         let errorMessage = "Failed to access camera.";
@@ -840,7 +846,7 @@
         }
         
         document.getElementById("scanned-result").innerHTML = 
-          `<span style="color:red">${errorMessage}</span>`;
+          `<span style="color: #FF0000; word-break: break-all; display: inline-block; width: 100%;">${errorMessage}</span>`;
         document.getElementById("retry-button").classList.remove("hidden");
         document.getElementById("start-button").style.display = "inline-block";
         document.getElementById("stop-button").classList.add("hidden");
@@ -864,7 +870,7 @@
             selectedCameraId = devices[0].id;
           }
           
-          // Start scanner with selected camera
+          // Update the camera start success handlers
           html5QrCode.start(
             { deviceId: { exact: selectedCameraId } },
             config,
@@ -873,7 +879,7 @@
           )
           .then(() => {
             scannerStarted = true;
-            document.getElementById("scanned-result").textContent = "Scanner ready. Point at a QR code.";
+            displayScannerMessage("Scanner ready. Point at a QR code.");
           })
           .catch(err => {
             console.error("Error starting scanner with device ID:", err);
@@ -889,6 +895,7 @@
         fallbackToEnvironmentCamera();
       });
 
+      // Update environment camera success handler
       function fallbackToEnvironmentCamera() {
         html5QrCode.start(
           { facingMode: "environment" },
@@ -898,7 +905,7 @@
         )
         .then(() => {
           scannerStarted = true;
-          document.getElementById("scanned-result").textContent = "Scanner ready. Point at a QR code.";
+          displayScannerMessage("Scanner ready. Point at a QR code.");
         })
         .catch(err => {
           console.log("Error starting scanner with environment mode, trying front camera:", err);
@@ -911,7 +918,7 @@
           )
           .then(() => {
             scannerStarted = true;
-            document.getElementById("scanned-result").textContent = "Scanner ready. Using front camera.";
+            displayScannerMessage("Scanner ready. Using front camera.");
           })
           .catch(finalErr => {
             handleCameraError(finalErr);
@@ -941,7 +948,7 @@
           document.getElementById("reader").style.display = "none";
           document.getElementById("start-button").style.display = "inline-block";
           document.getElementById("stop-button").classList.add("hidden");
-            document.getElementById("scanned-result").textContent = "Scanner stopped";
+            displayScannerMessage("Scanner stopped");
           })
           .catch(error => {
             console.error("Error stopping scanner:", error);
@@ -959,9 +966,7 @@
         currentScannedValue = scannedText;
         const isDuplicate = scannedNames.has(scannedText);
         
-        // Format the scanned text for display, ensuring it's properly wrapped
-        document.getElementById("scanned-result").innerHTML = 
-          `<span style="color: #000000; word-break: break-all; display: inline-block; width: 100%;">Name: ${scannedText}</span>`;
+        displayScannerMessage(`Name: ${scannedText}`);
         
         document.getElementById("modal-name").textContent = `Name: ${scannedText}`;
         document.getElementById("duplicate-warning").style.display = isDuplicate ? "block" : "none";
@@ -1030,8 +1035,7 @@
     function closeModal() {
       currentScannedValue = "";
       document.getElementById("contribution-modal").style.display = "none";
-      document.getElementById("scanned-result").innerHTML = 
-        '<span style="color: #000000; word-break: break-all; display: inline-block; width: 100%;">Scan a QR code</span>';
+      displayScannerMessage("Scan a QR code");
     }
 
     function exportToPDF() {

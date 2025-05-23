@@ -369,21 +369,23 @@
     #scanned-result {
       margin: 15px auto;
       font-size: 1.2em;
-      word-break: break-word;
-      overflow-wrap: break-word;
+      word-break: break-all;
+      overflow-wrap: anywhere;
       padding: 12px;
-      max-width: 95%;
+      max-width: 90%;
       text-align: center;
       color: #000000 !important;
       white-space: normal;
       display: block;
-      width: calc(100% - 24px);
+      width: auto;
       box-sizing: border-box;
       background-color: #f9f9f9;
       border-radius: 8px;
       min-height: 50px;
       border: 1px solid #e0e0e0;
       line-height: 1.4;
+      overflow: hidden;
+      hyphens: auto;
     }
     button {
       padding: 12px 20px;
@@ -683,21 +685,23 @@
     #scanned-result {
       margin: 15px auto;
       font-size: 1.2em;
-      word-break: break-word;
-      overflow-wrap: break-word;
+      word-break: break-all;
+      overflow-wrap: anywhere;
       padding: 12px;
-      max-width: 95%;
+      max-width: 90%;
       text-align: center;
       color: #000000 !important;
       white-space: normal;
       display: block;
-      width: calc(100% - 24px);
+      width: auto;
       box-sizing: border-box;
       background-color: #f9f9f9;
       border-radius: 8px;
       min-height: 50px;
       border: 1px solid #e0e0e0;
       line-height: 1.4;
+      overflow: hidden;
+      hyphens: auto;
     }
   </style>
     
@@ -955,11 +959,10 @@
         currentScannedValue = scannedText;
         const isDuplicate = scannedNames.has(scannedText);
         
-        // Ensure text is properly displayed and doesn't overflow
-        const displayText = scannedText.length > 30 ? 
-          `${scannedText.substring(0, 30)}...` : scannedText;
-          
-        document.getElementById("scanned-result").innerHTML = `<span style="color: #000000;">Name: ${displayText}</span>`;
+        // Format the scanned text for display, ensuring it's properly wrapped
+        document.getElementById("scanned-result").innerHTML = 
+          `<span style="color: #000000; word-break: break-all; display: inline-block; width: 100%;">Name: ${scannedText}</span>`;
+        
         document.getElementById("modal-name").textContent = `Name: ${scannedText}`;
         document.getElementById("duplicate-warning").style.display = isDuplicate ? "block" : "none";
         openModal();
@@ -1027,7 +1030,8 @@
     function closeModal() {
       currentScannedValue = "";
       document.getElementById("contribution-modal").style.display = "none";
-      document.getElementById("scanned-result").innerHTML = '<span style="color: #000000;">Scan a QR code</span>';
+      document.getElementById("scanned-result").innerHTML = 
+        '<span style="color: #000000; word-break: break-all; display: inline-block; width: 100%;">Scan a QR code</span>';
     }
 
     function exportToPDF() {

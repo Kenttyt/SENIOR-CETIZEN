@@ -219,11 +219,26 @@ hr {
     .delete-modal {
       background-color: white;
       border-radius: 12px;
-      width: 100%;
+      width: 90%;
       max-width: 400px;
       padding: 25px;
       text-align: center;
       animation: modalFadeIn 0.3s ease;
+    }
+    
+    @media screen and (max-width: 480px) {
+      .delete-modal {
+        padding: 20px 15px;
+      }
+      
+      .delete-modal .btn-group {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .delete-modal .btn-group button {
+        width: 100%;
+      }
     }
 
     .delete-modal h3 {
@@ -281,22 +296,6 @@ hr {
       to { opacity: 1; transform: translateY(0); }
     }
 
-  </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-</head>
-
-<body>
-  <section class="dashboard">
-  <div class="top">
-    <button class="close-btn" id="cancel-btn">Back</button>
-  <script>
-  document.getElementById('cancel-btn').addEventListener('click', function() {
-    window.history.back();
-  });
-</script>
-  </div>
-
-   <style>
     .modal {
       margin-top:60px;
       display: none;
@@ -315,9 +314,10 @@ hr {
       margin: 2% auto;
       padding: 30px;
       border: 1px solid #888;
-      width: 480px;
+      width: 90%;
+      max-width: 480px;
       border-radius: 10px;
-      max-height: 80vh; /* Limit the maximum height of the modal */
+      max-height: 80vh;
       overflow-y: auto;
     }
 
@@ -388,7 +388,263 @@ hr {
       margin: 15% auto;
       padding: 20px;
       border-radius: 10px;
-      width: 300px;
+      width: 90%;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .confirm-btn, .cancel-btn {
+      padding: 8px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .confirm-btn {
+      background-color: #034c73;
+      color: white;
+    }
+
+    .cancel-btn {
+      background-color: #f44336;
+      color: white;
+    }
+    
+    .delete-modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .delete-modal {
+      background-color: white;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      padding: 25px;
+      text-align: center;
+      animation: modalFadeIn 0.3s ease;
+    }
+
+    /* Responsive modal styles */
+    @media screen and (max-width: 768px) {
+      .modal {
+        margin-top: 40px;
+      }
+      
+      .modal-content {
+        padding: 20px;
+        margin: 5% auto;
+        width: 95%;
+      }
+      
+      .confirm-content {
+        margin: 25% auto;
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      .modal-content {
+        padding: 15px;
+      }
+      
+      .delete-modal {
+        padding: 20px 15px;
+      }
+      
+      .btn-group {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .btn-group button {
+        width: 100%;
+        margin-bottom: 5px;
+      }
+    }
+
+    /* Transaction Info Box */
+    .transaction-info-box {
+      background: #ffeaa7;
+      padding: 20px;
+      margin: 20px auto;
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+      border-radius: 12px;
+    }
+    
+    /* Modal Close Button */
+    .modal-close {
+      cursor: pointer;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    
+    @media screen and (max-width: 480px) {
+      .modal-close {
+        font-size: 32px;
+        padding: 5px 10px;
+      }
+      
+      .transaction-info-box {
+        padding: 15px 10px;
+        font-size: 14px;
+      }
+      
+      .responsive-date {
+        font-size: 14px;
+      }
+      
+      /* Larger tap targets for mobile */
+      input, button, select {
+        min-height: 44px;
+      }
+    }
+
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+  <section class="dashboard">
+  <div class="top">
+    <button class="close-btn" id="cancel-btn">Back</button>
+  <script>
+  document.getElementById('cancel-btn').addEventListener('click', function() {
+    window.history.back();
+  });
+</script>
+  </div>
+
+   <style>
+    .modal {
+      margin-top:60px;
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 2% auto;
+      padding: 30px;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 480px;
+      border-radius: 10px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    
+    /* Responsive modal styles */
+    @media screen and (max-width: 768px) {
+      .modal {
+        margin-top: 40px;
+      }
+      
+      .modal-content {
+        padding: 20px;
+        margin: 5% auto;
+        width: 95%;
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      .modal-content {
+        padding: 15px;
+      }
+    }
+
+    input[type="number"], input[type="date"] {
+      width: 100%;
+      padding: 8px;
+      margin: 6px 0 12px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    .withdraw-btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #034c73;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-top: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .withdraw-btn:hover {
+      background-color: #026aa7;
+    }
+    
+    /* Modal Alert Styles */
+    .modal-alert {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+      text-align: center;
+      display: none;
+    }
+
+    .success-alert {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+      text-align: center;
+      display: none;
+    }
+
+    /* Confirmation Modal */
+    .confirm-modal {
+      display: none;
+      position: fixed;
+      z-index: 1001;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .confirm-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 300px;
       text-align: center;
     }
 
@@ -437,10 +693,10 @@ hr {
 <!-- Withdrawal Modal -->
 <div id="modalCash" class="modal">
   <div class="modal-content">
-    <span onclick="closeModal('modalCash')" style="cursor:pointer; float:right;">&times;</span>
+    <span onclick="closeModal('modalCash')" class="modal-close">&times;</span>
     <h3>Bank Fund to Cash on Hand</h3>
-    <div style="background: #ffeaa7; padding: 20px; margin: 20px auto; width: 100%; max-width: 300px; text-align: center; border-radius: 12px; ">
-      <p><strong >Bank Fund:</strong> ₱<span id="modalBankFund">6999</span></p>
+    <div class="transaction-info-box">
+      <p><strong>Bank Fund:</strong> ₱<span id="modalBankFund">6999</span></p>
       <p><strong>– Withdrawn:</strong> ₱<span id="withdrawn">0</span></p>
       <hr>
       <p><strong>Cash on Hand:</strong> ₱<span id="modalCashOnHand">5000</span></p>
@@ -452,7 +708,7 @@ hr {
     <label>Enter Amount to Withdraw:</label>
     <input type="number" id="withdrawInput" value="0" oninput="updateWithdrawal()" />
     <label>Date Issued:</label>
-    <input type="date" id="dateIssued1" required>
+    <input type="date" id="dateIssued1" class="responsive-date" required>
     <button class="withdraw-btn" onclick="confirmWithdraw()">Withdraw</button>
   </div>
 </div>
@@ -460,9 +716,9 @@ hr {
 <!-- Deposit Modal -->
 <div id="modalBank" class="modal">
   <div class="modal-content">
-    <span onclick="closeModal('modalBank')" style="cursor:pointer; float:right;">&times;</span>
+    <span onclick="closeModal('modalBank')" class="modal-close">&times;</span>
     <h3>Cash on Hand to Bank Fund</h3>
-    <div style="background: #ffeaa7; padding: 20px; margin: 20px auto; width: 100%; max-width: 300px; text-align: center; border-radius: 12px;">
+    <div class="transaction-info-box">
       <p><strong>Cash on Hand:</strong> ₱<span id="modalDepositCash">5000</span></p>
       <p><strong>+ Deposit:</strong> ₱<span id="depositAmount">0</span></p>
       <hr>
@@ -475,7 +731,7 @@ hr {
     <label>Enter Amount to Deposit:</label>
     <input type="number" id="depositInput" value="0" oninput="updateDeposit()" />
     <label>Date Issued:</label>
-    <input type="date" id="depositDate" value="2024-02-01" />
+    <input type="date" id="depositDate" class="responsive-date" value="2024-02-01" />
     <button class="withdraw-btn" onclick="confirmDeposit()">Deposit</button>
   </div>
 </div>

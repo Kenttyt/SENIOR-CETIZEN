@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Senior Citizen</title>
+  <link rel="stylesheet" href="../css/chatbot.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    :root {
+      --primary-color: #0E4BF1;
+      --panel-color: #FFF;
+      --text-color: #000;
+      --black-light-color: #000;
+      --border-color: #e6e5e5;
+      --toggle-color: #DDD;
+      --box1-color: #4DA3FF;
+      --box2-color: #FFE6AC;
+      --box3-color: #E7D1FC;
+      --title-icon-color: #fff;
+      --tran-05: all 0.5s ease;
+      --tran-03: all 0.3s ease;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--primary-color);
+    }
+
+    body.dark {
+      --primary-color: #3A3B3C;
+      --panel-color: #242526;
+      --text-color: #CCC;
+      --black-light-color: #CCC;
+      --border-color: #4D4C4C;
+      --toggle-color: #FFF;
+      --box1-color: #3A3B3C;
+      --box2-color: #3A3B3C;
+      --box3-color: #3A3B3C;
+      --title-icon-color: #CCC;
+    }
+
+    .dashboard {
+      position: relative;
+      background-color: var(--panel-color);
+      min-height: 100vh;
+      padding: 10px 14px;
+    }
+
+   .top {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--panel-color, white);
+  padding: 10px 14px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+    .close-btn {
+      margin-right:10px;
+      padding: 10px 20px;
+      background-color: #f44336;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .close-btn:hover {
+      background-color: #d32f2f;
+    }
+
+  
+
+    .search-box input {
+      width: 100%;
+      height: 100%;
+      padding: 0 25px 0 50px;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      background-color: var(--panel-color);
+      color: var(--text-color);
+      font-size: 15px;
+      outline: none;
+    }
+
+    .search-box i {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      font-size: 22px;
+      color: var(--black-light-color);
+    }
+
+    .overview .boxes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .box {
+      flex: 1 1 250px;
+      padding: 20px;
+      border-radius: 12px;
+      background: var(--box1-color);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .box:hover {
+      transform: translateY(-5px);
+    }
+
+ 
+
+    .container {
+      background: white;
+      padding: 60px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 100%;
+      margin: 30px auto;
+    }
+
+ 
+    .box .number {
+  display: block;
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+}
+
+hr {
+  border: none;
+  border-top: 3px solid black;
+  margin-top:10px;
+  margin-bottom:6px;
+
+}
+
+  </style>
+</head>
+
+<body>
+  <section class="dashboard">
+  <div class="top">
+    <button class="close-btn" id="cancel-btn">Back</button>
+  <script>
+  document.getElementById('cancel-btn').addEventListener('click', function() {
+    window.history.back();
+  });
+</script>
+  </div>
+
+  <div class="dash-content">
+      <div class="overview">
+        <div class="boxes">
+         <div class="box box1" style="background-color: #023854;">  
+            <span class="text" style="color :#fff; font-size:36px; font—weight:500;">Cash On Hand</span>  
+            <span class="number" style="color :#fff;" >₱6999</span>  
+          </div>  
+          <div class="box box2" style="background-color: #023854; font-size:36px; font—weight:500; ">  
+            <span class="text" style="color :#fff;">Bank Fund</span>  
+            <span class="number" style="color :#fff;">₱5000</span>  
+          </div>  
+        
+        </div>
+     <hr>
+    
+
+
+  <style>
+    
+    
+
+    .selector-container {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      margin: auto;
+      margin-bottom: 30px;
+    }
+
+    .year-wrapper,
+    .month-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .arrow {
+      font-size: 24px;
+      background: #ddd;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      font-weight: bold;
+    }
+
+    .arrow:hover {
+      background: #ccc;
+    }
+
+    .year-scroll,
+    .month-scroll {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      flex-grow: 1;
+      padding: 10px 0;
+      position: relative;
+    }
+
+    .year-scroll::-webkit-scrollbar,
+    .month-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .year, .month {
+      min-width: 80px;
+      padding: 12px 16px;
+      text-align: center;
+      background: #f5f5f5;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .year:hover, .month:hover {
+      background: #e9e9e9;
+      transform: scale(1.05);
+    }
+
+    .year.active {
+      background: #007bff;
+      color: white;
+      font-weight: bold;
+      transform: scale(1.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .month.active {
+      background: #007bff;
+      color: white;
+      font-weight: bold;
+      transform: scale(1.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .financial-statement {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .section {
+      margin-bottom: 30px;
+    }
+    
+    h1 {
+      color: #333;
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+    
+    h2 {
+      color: #333;
+    }
+    
+    h3 {
+      color: #2e7d32;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 8px;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    td {
+      padding: 12px 8px;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .summary-table {
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      border-radius: 8px;
+      margin-top: 20px;
+      padding: 15px;
+    }
+    
+    .summary-table td {
+      font-weight: bold;
+      font-size: 18px;
+      padding: 12px;
+    }
+
+    tr:hover {
+      background-color: #f8f8f8;
+    }
+
+    .no-data-message {
+      text-align: center;
+      padding: 40px;
+      color: #777;
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .financial-statement {
+        padding: 15px;
+      }
+      
+      h1 {
+        font-size: 40px;
+      }
+      
+      .summary-table td {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>HISTORY OF TRANSACTION</h1>
+  
+  <div class="selector-container">
+    <label><b>Select Year</b></label>
+    <div class="year-wrapper">
+      <button class="arrow" onclick="scrollYears(-1)">‹</button>
+      <div class="year-scroll" id="yearScroll"></div>
+      <button class="arrow" onclick="scrollYears(1)">›</button>
+    </div>
+
+    <label><b>Select Month</b></label>
+    <div class="month-wrapper">
+      <button class="arrow" onclick="scrollMonths(-1)">‹</button>
+      <div class="month-scroll" id="monthScroll"></div>
+      <button class="arrow" onclick="scrollMonths(1)">›</button>
+    </div>
+  </div>
+
+  <div class="financial-statement" id="financialStatement">
+    <div class="header">
+      <h2 id="statementHeader">FINANCIAL STATEMENT</h2>
+    </div>
+<b>
+    <div class="section">
+      <h3>ADD / INCOME COLLECTIONS</h3>
+      <table id="incomeTable">
+        <tbody id="incomeTableBody">
+          <!-- Income data will be populated here -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h3 style="color: #d32f2f;">LESS / EXPENSES COLLECTIONS</h3>
+      <table id="expensesTable">
+        <tbody id="expensesTableBody">
+          <!-- Expenses data will be populated here -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <table class="summary-table">
+        <tr>
+          <td style="color: green;">ADD / INCOME COLLECTIONS</td>
+          <td id="totalIncome">₱0</td>
+        </tr>
+        <tr>
+          <td style="color: #d32f2f;">LESS / EXPENSES COLLECTIONS</td>
+          <td id="totalExpenses">₱0</td>
+        </tr>
+        <tr>
+          <td style="color: black;">TOTAL CASH ON HAND</td>
+          <td id="cashOnHand">₱0</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</b>
+  <script>
+    // Financial data organized by year and month
+    const financialData = {
+      '2025': {
+        '02': {  // February
+          header: 'FOR THE MONTH OF FEBRUARY 2025',
+          previousBalance: 4466,
+          income: [
+            { description: 'JAN. 12 Membership Renewal', amount: 6300 },
+            { description: 'Monthly Dues', amount: 2330 },
+            { description: 'Collection from Linda Delos Santos', amount: 150 },
+            { description: 'Collection from Norbing Serra', amount: 150 },
+            { description: 'FEB. 13 Reimbursement from Brgy.', amount: 2000 }
+          ],
+          expenses: [
+            { description: 'JAN. 12 Secretary\'s Supplies & Expenses', amount: 156 },
+            { description: 'Paghakot sa Bangko', amount: 100 },
+            { description: 'Pagdala sa Sound System', amount: 100 },
+            { description: 'Snacks', amount: 474 },
+            { description: 'Travelling Allowance (Pres. & Sec.)', amount: 300 },
+            { description: 'FEB. 2 Honorarium', amount: 1750 },
+            { description: 'Donation to Late Dionesia Dano', amount: 1000 },
+            { description: 'Donation to Late Narciso Galicha', amount: 2000 },
+            { description: 'Donation to Late Cleofe Bungabong', amount: 2000 }
+          ]
+        },
+        '03': {  // March
+          header: 'FOR THE MONTH OF MARCH 2025',
+          previousBalance: 7516,  // This is the ending balance from February
+          income: [
+            { description: 'Monthly Dues', amount: 2500 },
+            { description: 'Special Collection for Community Event', amount: 3000 },
+            { description: 'Donation from Local Business', amount: 1500 }
+          ],
+          expenses: [
+            { description: 'Office Supplies', amount: 250 },
+            { description: 'Community Cleanup Event', amount: 1200 },
+            { description: 'Emergency Fund Contribution', amount: 500 },
+            { description: 'Transportation Expenses', amount: 300 }
+          ]
+        },
+        '04': {  // April
+          header: 'FOR THE MONTH OF APRIL 2025',
+          previousBalance: 12266,  // This is the ending balance from March
+          income: [
+            { description: 'Monthly Dues', amount: 2400 },
+            { description: 'Easter Event Collections', amount: 1800 },
+            { description: 'Interest from Savings', amount: 75 }
+          ],
+          expenses: [
+            { description: 'Easter Community Celebration', amount: 2200 },
+            { description: 'Office Equipment Maintenance', amount: 350 },
+            { description: 'Donation to Community School', amount: 1000 }
+          ]
+        }
+      },
+      '2024': {
+        '12': {  // December
+          header: 'FOR THE MONTH OF DECEMBER 2024',
+          previousBalance: 3200,
+          income: [
+            { description: 'Monthly Dues', amount: 2250 },
+            { description: 'Christmas Fundraiser', amount: 5000 },
+            { description: 'Year-end Member Contributions', amount: 1500 }
+          ],
+          expenses: [
+            { description: 'Christmas Community Celebration', amount: 3500 },
+            { description: 'Office Expenses', amount: 320 },
+            { description: 'Annual Report Printing', amount: 450 },
+            { description: 'Yearend Honorarium', amount: 3000 }
+          ]
+        }
+      }
+    };
+
+    // Year selector configuration
+    const yearScroll = document.getElementById("yearScroll");
+    const startYear = 2023;
+    const endYear = 2030;
+    const yearList = [];
+
+    function createYearItems() {
+      yearScroll.innerHTML = ""; // clear content
+
+      const spacerWidth = yearScroll.offsetWidth / 2;
+
+      const spacerStart = document.createElement("div");
+      spacerStart.style.minWidth = `${spacerWidth}px`;
+      spacerStart.style.height = "1px";
+      yearScroll.appendChild(spacerStart);
+
+      for (let y = startYear; y <= endYear; y++) {
+        const yearDiv = document.createElement("div");
+        yearDiv.classList.add("year");
+        yearDiv.textContent = y;
+        yearDiv.dataset.value = y;
+        yearDiv.onclick = () => {
+          centerYear(yearDiv);
+          updateFinancialStatement();
+        };
+        yearScroll.appendChild(yearDiv);
+        yearList.push(yearDiv);
+      }
+
+      const spacerEnd = document.createElement("div");
+      spacerEnd.style.minWidth = `${spacerWidth}px`;
+      spacerEnd.style.height = "1px";
+      yearScroll.appendChild(spacerEnd);
+    }
+
+    function setActiveYear(selectedDiv) {
+      document.querySelectorAll(".year").forEach(el => el.classList.remove("active"));
+      selectedDiv.classList.add("active");
+    }
+
+    function centerYear(el) {
+      const scrollLeft = el.offsetLeft - (yearScroll.offsetWidth / 2 - el.offsetWidth / 2);
+      yearScroll.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+      setActiveYear(el);
+    }
+
+    function scrollYears(direction) {
+      const itemWidth = document.querySelector(".year").offsetWidth + 10;
+      yearScroll.scrollBy({ left: direction * itemWidth, behavior: "smooth" });
+    }
+
+    function selectCenterYear() {
+      const center = yearScroll.scrollLeft + yearScroll.offsetWidth / 2;
+      let closest = null;
+      let minDistance = Infinity;
+
+      document.querySelectorAll('.year').forEach(el => {
+        const elCenter = el.offsetLeft + el.offsetWidth / 2;
+        const distance = Math.abs(center - elCenter);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closest = el;
+        }
+      });
+
+      if (closest) {
+        centerYear(closest);
+        updateFinancialStatement();
+      }
+    }
+
+    let scrollTimeout;
+    yearScroll.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        selectCenterYear();
+        updateFinancialStatement();
+      }, 100);
+    });
+
+    // Month selector configuration
+    const monthScroll = document.getElementById("monthScroll");
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const monthList = [];
+
+    function createMonthItems() {
+      monthScroll.innerHTML = "";
+      const spacerWidth = monthScroll.offsetWidth / 2;
+
+      const spacerStart = document.createElement("div");
+      spacerStart.style.minWidth = `${spacerWidth}px`;
+      spacerStart.style.height = "1px";
+      monthScroll.appendChild(spacerStart);
+
+      monthNames.forEach((name, i) => {
+        const monthDiv = document.createElement("div");
+        monthDiv.classList.add("month");
+        monthDiv.textContent = name;
+        monthDiv.dataset.value = String(i + 1).padStart(2, "0");
+        monthDiv.onclick = () => {
+          centerMonth(monthDiv);
+          updateFinancialStatement();
+        };
+        monthScroll.appendChild(monthDiv);
+        monthList.push(monthDiv);
+      });
+
+      const spacerEnd = document.createElement("div");
+      spacerEnd.style.minWidth = `${spacerWidth}px`;
+      spacerEnd.style.height = "1px";
+      monthScroll.appendChild(spacerEnd);
+    }
+
+    function setActiveMonth(selectedDiv) {
+      document.querySelectorAll(".month").forEach(el => el.classList.remove("active"));
+      selectedDiv.classList.add("active");
+    }
+
+    function centerMonth(el) {
+      const scrollLeft = el.offsetLeft - (monthScroll.offsetWidth / 2 - el.offsetWidth / 2);
+      monthScroll.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+      setActiveMonth(el);
+    }
+
+    function scrollMonths(direction) {
+      const itemWidth = document.querySelector(".month").offsetWidth + 10;
+      monthScroll.scrollBy({ left: direction * itemWidth, behavior: "smooth" });
+    }
+
+    function selectCenterMonth() {
+      const center = monthScroll.scrollLeft + monthScroll.offsetWidth / 2;
+      let closest = null;
+      let minDistance = Infinity;
+
+      document.querySelectorAll('.month').forEach(el => {
+        const elCenter = el.offsetLeft + el.offsetWidth / 2;
+        const distance = Math.abs(center - elCenter);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closest = el;
+        }
+      });
+
+      if (closest) {
+        centerMonth(closest);
+        updateFinancialStatement();
+      }
+    }
+
+    let monthScrollTimeout;
+    monthScroll.addEventListener('scroll', () => {
+      clearTimeout(monthScrollTimeout);
+      monthScrollTimeout = setTimeout(() => {
+        selectCenterMonth();
+        updateFinancialStatement();
+      }, 100);
+    });
+
+    // Financial Statement update function
+    function updateFinancialStatement() {
+      const selectedYear = document.querySelector('.year.active')?.dataset.value;
+      const selectedMonth = document.querySelector('.month.active')?.dataset.value;
+      
+      if (!selectedYear || !selectedMonth) return;
+      
+      // Update header
+      const headerElement = document.getElementById('statementHeader');
+      
+      // Check if data exists for the selected year and month
+      if (financialData[selectedYear] && financialData[selectedYear][selectedMonth]) {
+        // Data exists, update the financial statement
+        const data = financialData[selectedYear][selectedMonth];
+        
+        // Update header
+        headerElement.textContent = `FINANCIAL STATEMENT ${data.header}`;
+        
+        // Update income table
+        const incomeTableBody = document.getElementById('incomeTableBody');
+        incomeTableBody.innerHTML = '';
+        
+        // Add income items
+        data.income.forEach(item => {
+          const row = document.createElement('tr');
+          row.innerHTML = `<td>${item.description}</td><td>₱${item.amount.toLocaleString()}</td>`;
+          incomeTableBody.appendChild(row);
+        });
+        
+        // Add total income row
+        const incomeSum = data.income.reduce((sum, item) => sum + item.amount, 0);
+        const incomeTotalRow = document.createElement('tr');
+        incomeTotalRow.innerHTML = `<td style ="color :#2e7d32;"><strong>Total Income</strong></td><td><strong>₱${incomeSum.toLocaleString()}</strong></td>`;
+        incomeTableBody.appendChild(incomeTotalRow);
+        
+        const spacerRow = document.createElement('tr');
+spacerRow.innerHTML = `<td colspan="2" style="height: 35px;"></td>`;
+incomeTableBody.appendChild(spacerRow);
+
+        
+        // Add previous balance row
+        const prevBalanceRow = document.createElement('tr');
+        prevBalanceRow.innerHTML = `<td>Balance from Previous Month</td><td>₱${data.previousBalance.toLocaleString()}</td>`;
+        incomeTableBody.appendChild(prevBalanceRow);
+        
+        // Add grand total income row
+        const grandTotal = incomeSum + data.previousBalance;
+        const grandTotalRow = document.createElement('tr');
+        grandTotalRow.innerHTML = `<td style ="color :#2e7d32;"><strong>TOTAL ADD / INCOME COLLECTIONS</strong></td><td><strong>₱${grandTotal.toLocaleString()}</strong></td>`;
+        incomeTableBody.appendChild(grandTotalRow);
+        
+        // Update expenses table
+        const expensesTableBody = document.getElementById('expensesTableBody');
+        expensesTableBody.innerHTML = '';
+        
+        // Add expense items
+        data.expenses.forEach(item => {
+          const row = document.createElement('tr');
+          row.innerHTML = `<td>${item.description}</td><td>₱${item.amount.toLocaleString()}</td>`;
+          expensesTableBody.appendChild(row);
+        });
+        
+        // Add total expenses row
+        const expensesSum = data.expenses.reduce((sum, item) => sum + item.amount, 0);
+        const expensesTotalRow = document.createElement('tr');
+        expensesTotalRow.innerHTML = `<td style="color: #d32f2f;"><strong>TOTAL LESS / EXPENSE COLLECTIONS</strong></td><td><strong>₱${expensesSum.toLocaleString()}</strong></td>`;
+        expensesTableBody.appendChild(expensesTotalRow);
+        
+        // Update summary section
+        document.getElementById('totalIncome').textContent = `₱${grandTotal.toLocaleString()}`;
+        document.getElementById('totalExpenses').textContent = `₱${expensesSum.toLocaleString()}`;
+        document.getElementById('cashOnHand').textContent = `₱${(grandTotal - expensesSum).toLocaleString()}`;
+        
+        // Show the financial statement
+        document.getElementById('financialStatement').style.display = 'block';
+      } else {
+        // No data for this period, show a message
+        headerElement.textContent = `FINANCIAL STATEMENT FOR ${monthNames[parseInt(selectedMonth) - 1].toUpperCase()} ${selectedYear}`;
+        
+        document.getElementById('incomeTableBody').innerHTML = '<tr><td colspan="2" class="no-data-message">No financial data available for this period</td></tr>';
+        document.getElementById('expensesTableBody').innerHTML = '<tr><td colspan="2" class="no-data-message">No expense data available for this period</td></tr>';
+        
+        document.getElementById('totalIncome').textContent = '₱0';
+        document.getElementById('totalExpenses').textContent = '₱0';
+        document.getElementById('cashOnHand').textContent = '₱0';
+      }
+    }
+
+    // Initialize year and month selectors
+    window.addEventListener("load", () => {
+      createYearItems();
+      createMonthItems();
+      
+      // Find 2025 and select it
+      const initialYear = [...document.querySelectorAll('.year')].find(y => y.dataset.value === '2025');
+      if (initialYear) centerYear(initialYear);
+      
+      // Find February (02) and select it
+      const initialMonth = [...document.querySelectorAll('.month')].find(m => m.dataset.value === '02');
+      if (initialMonth) centerMonth(initialMonth);
+      
+      // Update the financial statement
+      updateFinancialStatement();
+    });
+
+    // Resize fix
+    let lastWindowWidth = window.innerWidth;
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth !== lastWindowWidth) {
+        lastWindowWidth = window.innerWidth;
+
+        const activeYear = document.querySelector('.year.active')?.dataset.value;
+        const activeMonth = document.querySelector('.month.active')?.dataset.value;
+
+        yearList.length = 0;
+        monthList.length = 0;
+        
+        createYearItems();
+        createMonthItems();
+
+        if (activeYear) {
+          const matchYear = [...document.querySelectorAll('.year')].find(
+            y => y.dataset.value === activeYear
+          );
+          if (matchYear) centerYear(matchYear);
+        }
+        
+        if (activeMonth) {
+          const matchMonth = [...document.querySelectorAll('.month')].find(
+            m => m.dataset.value === activeMonth
+          );
+          if (matchMonth) centerMonth(matchMonth);
+        }
+      }
+    });
+  </script>
+
+    
+ 
+    
+    
+    
+    
+    
+<!-- Chat Widget -->
+<div class="chat-widget" id="chat-widget">
+    <div class="chat-bubble" id="chat-bubble">
+        <i>💬</i>
+    </div>
+    
+    <div class="chat-container" id="chat-container">
+        <div class="chat-header">
+            <div class="chat-title">
+                <span class="status-indicator"></span>
+                AI Assistant
+            </div>
+            <div class="chat-close" id="chat-close">×</div>
+        </div>
+        
+        <div class="chat-messages" id="chat-messages">
+            <div class="message-container bot-container">
+                <div class="message bot-message">
+                    Maayong adlaw! Ako imong AI assistant. Unsay akong ikatabang nimo karon?
+                </div>
+                <span class="timestamp">Now</span>
+            </div>
+            
+            <div class="typing-indicator" id="typing-indicator">
+                <div class="typing-bubble"></div>
+                <div class="typing-bubble"></div>
+                <div class="typing-bubble"></div>
+            </div>
+        </div>
+        
+        <div class="chat-input">
+            <textarea class="chat-input-field" id="chat-input-field" placeholder="I-type imong mensahe..." rows="1"></textarea>
+            <button class="chat-send-btn" id="chat-send-btn">➤</button>
+        </div>
+    </div>
+</div>
+
+    
+ 
+ 
+ <script src="../js/chatbot.js"></script>
+  
+     
+  
+  </body>
+ </html>

@@ -1,0 +1,2655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Senior Citizen</title>
+  <link rel="stylesheet" href="../css/chatbot.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  
+  
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    :root {
+      --primary-color: #0E4BF1;
+      --panel-color: #FFF;
+      --text-color: #fff;
+      --black-light-color: #000;
+      --border-color: #e6e5e5;
+      --toggle-color: #DDD;
+     
+      --box2-color: #1E3A8A;
+     
+      --title-icon-color: #fff;
+      --tran-05: all 0.5s ease;
+      --tran-03: all 0.3s ease;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--primary-color);
+    }
+
+    
+
+    .dashboard {
+      position: relative;
+      background-color: var(--panel-color);
+      min-height: 100vh;
+      padding: 10px 14px;
+    }
+
+   .top {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--panel-color, white);
+  padding: 10px 14px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+    .close-btn {
+      margin-right:10px;
+      padding: 10px 20px;
+      background-color: #f44336;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .close-btn:hover {
+      background-color: #d32f2f;
+    }
+
+    .search-box {
+    margin-top:10px;
+      position: relative;
+      height: 45px;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .search-box input {
+      width: 100%;
+      height: 100%;
+      padding: 0 25px 0 50px;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      background-color: var(--panel-color);
+      color: black;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .search-box i {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      font-size: 22px;
+      color: var(--black-light-color);
+    }
+
+    .overview .boxes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .box {
+      flex: 1 1 250px;
+      padding: 20px;
+      border-radius: 12px;
+      background: var(--box1-color);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .box:hover {
+      transform: translateY(-5px);
+    }
+
+ 
+
+    .container {
+      background: white;
+      padding: 60px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      margin: 30px auto;
+    }
+
+ 
+    .box .number {
+  display: block;
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+}
+
+
+
+
+  </style>
+</head>
+
+<body>
+  <section class="dashboard">
+  <div class="top">
+    <button class="close-btn" id="cancel-btn">Back</button>
+  
+  </div>
+
+  
+        
+        
+       
+  <style>
+  
+    .container {
+      background: white;
+      padding: 60px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+    }
+
+    #reader {
+      width: 300px;
+      height: 300px;
+    }
+
+    #result {
+      margin-top: 15px;
+      font-size: 16px;
+      color: green;
+      word-wrap: break-word;
+    }
+
+    .year-box {
+      background-color: white;
+      padding: 30px 50px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      font-size: 2rem;
+      font-weight: bold;
+      color: #1a73e8;
+      text-align: center;
+    }
+
+    .activity-data-table {
+      display: flex;
+      flex-direction: row;
+      
+      max-height: 800px;
+      overflow-y: scroll;
+      border: 1px solid #ccc;
+       
+      background-color: #f5f5dc;
+      
+    }
+    
+
+    .data {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .data-title {
+      position: sticky;
+      top: 0;
+      background: white;
+      font-weight: bold;
+      padding: 8px;
+      z-index: 1;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .data-list {
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .activity-summary {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .summary-item {
+      flex: 1;
+      text-align: center;
+    }
+
+    .summary-title {
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .summary-value {
+      font-size: 1.3rem;
+      color: #1a73e8;
+    }
+
+    
+.activity-data-table {
+  max-height: 900px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  margin-top:12px;
+}
+
+.data-table-scroll {
+  width: 100%;
+}
+
+.data-row.header {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 2;
+  border-bottom: 2px solid #ccc;
+  font-weight: bold;
+  
+}
+
+.data-row {
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+
+.cell {
+  flex: 1;
+  padding: 10px;
+}
+
+th {
+  background-color:#f5f5dc;
+    
+}
+  </style>
+</head>
+
+<body>
+  
+  
+
+     
+      
+   
+
+  <style>
+    :root {
+      --primary-color: #034c73;
+      --primary-dark: #3c5e33;
+      --accent-color: #f8b400;
+      --text-color: #333;
+      --light-bg: #f5f5f5;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    
+    
+    .btn-new-member {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 15px 70px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--box-shadow);
+    }
+    
+    .btn-new-member:hover {
+      background-color: var(--primary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    .btn-new-member:active {
+      transform: translateY(0);
+    }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      overflow: auto;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .modal-content {
+      background-color: white;
+      margin: 50px auto;
+      max-width: 700px;
+      width: 95%;
+      border-radius: var(--border-radius);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      padding: 40px;
+      position: relative;
+      animation: slideDown 0.4s ease;
+    }
+    
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .modal-title {
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+    
+    .close {
+      font-size: 28px;
+      font-weight: bold;
+      color: #aaa;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .close:hover {
+      color: var(--text-color);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #555;
+    }
+    
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      font-size: 15px;
+      transition: var(--transition);
+    }
+    
+    input:focus, select:focus {
+      border-color: var(--primary-color);
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(79, 121, 66, 0.2);
+    }
+    
+    input::placeholder {
+      color: #aaa;
+    }
+    
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    
+    .membership-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 10px;
+    }
+    
+    .membership-option {
+      flex: 1;
+      min-width: 180px;
+      position: relative;
+      margin-bottom: 5px;
+    }
+    
+    .membership-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .membership-option label {
+      display: block;
+      background-color: var(--light-bg);
+      padding: 12px 15px;
+      text-align: center;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-weight: 500;
+      border: 2px solid transparent;
+      transition: var(--transition);
+    }
+    
+    .membership-option input[type="radio"]:checked + label {
+      background-color: rgba(79, 121, 66, 0.1);
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+    
+    .error-message {
+      color: #e74c3c;
+      font-size: 14px;
+      margin-top: 5px;
+      display: none;
+    }
+    
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .btn-cancel {
+      background-color: #f1f1f1;
+      color: #666;
+    }
+    
+    .btn-cancel:hover {
+      background-color: #e5e5e5;
+    }
+    
+    .btn-add {
+      background-color: var(--primary-color);
+      color: white;
+      min-width: 120px;
+    }
+    
+    .btn-add:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .highlight {
+      border-color: #e74c3c !important;
+    }
+    
+    .success-message {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 15px 25px;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 1200;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transform: translateX(120%);
+      transition: transform 0.3s ease;
+      max-width: 400px;
+    }
+    
+    .success-message.error {
+      background-color: #fde8e8;
+      border-left: 4px solid #dc3545;
+      color: #dc3545;
+    }
+    
+    .success-message.success {
+      background-color: #e8f5e9;
+      border-left: 4px solid #4caf50;
+      color: #2e7d32;
+    }
+    
+    .success-message.show {
+      transform: translateX(0);
+    }
+    
+    .success-message i {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div style="display: flex; justify-content: center; margin: 20px 0;">
+    <button class="btn-new-member" id="openModalBtn">New Member Registration</button>
+  </div>
+
+  <div id="memberModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Member Registration</h2>
+        <span class="close" id="closeModalBtn">&times;</span>
+      </div>
+      
+      <form id="memberForm">
+        <div class="form-group">
+          <label for="nameInput">Full Name</label>
+          <input type="text" id="nameInput" placeholder="Enter complete name">
+          <div class="error-message" id="nameError">Please enter your full name</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="birthdayInput">Birthday</label>
+          <input type="date" id="birthdayInput">
+          <div class="error-message" id="birthdayError">Please select your birthday</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="genderInput">Gender</label>
+          <select id="genderInput">
+            <option value="">Select gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+          <div class="error-message" id="genderError">Please select your gender</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="contactInput">Contact Number</label>
+          <input type="number" id="contactInput" placeholder="Enter contact number">
+          <div class="error-message" id="contactError">Please enter a valid contact number</div>
+        </div>
+        
+        <div class="form-group">
+          <label>Membership Status</label>
+          <div class="membership-options">
+            <div class="membership-option">
+              <input type="radio" name="membership" value="yes" id="yesRadio">
+              <label for="yesRadio">Oo - ₱150</label>
+            </div>
+            <div class="membership-option">
+              <input type="radio" name="membership" value="no" id="noRadio" checked>
+              <label for="noRadio">Dili pa</label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="btn-container">
+          <button type="button" class="btn btn-cancel" id="cancelBtn">Cancel</button>
+          <button type="submit" class="btn btn-add" id="addMemberBtn">Add Member</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <div class="success-message" id="successMessage">
+    Member added successfully!
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const modal = document.getElementById('memberModal');
+      const openModalBtn = document.getElementById('openModalBtn');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      const cancelBtn = document.getElementById('cancelBtn');
+      const memberForm = document.getElementById('memberForm');
+      const successMessage = document.getElementById('successMessage');
+      
+      // Form inputs
+      const nameInput = document.getElementById('nameInput');
+      const birthdayInput = document.getElementById('birthdayInput');
+      const genderInput = document.getElementById('genderInput');
+      const contactInput = document.getElementById('contactInput');
+      
+      // Error messages
+      const nameError = document.getElementById('nameError');
+      const birthdayError = document.getElementById('birthdayError');
+      const genderError = document.getElementById('genderError');
+      const contactError = document.getElementById('contactError');
+      
+      // Open modal
+      openModalBtn.addEventListener('click', function() {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+      });
+      
+      // Close modal functions
+      function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
+        clearForm();
+        clearErrors();
+      }
+      
+      closeModalBtn.addEventListener('click', closeModal);
+      cancelBtn.addEventListener('click', closeModal);
+      
+      // Close modal when clicking outside
+      window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+          closeModal();
+        }
+      });
+      
+      // Clear form inputs
+      function clearForm() {
+        memberForm.reset();
+        document.getElementById('noRadio').checked = true;
+      }
+      
+      // Clear error messages
+      function clearErrors() {
+        nameError.style.display = 'none';
+        birthdayError.style.display = 'none';
+        genderError.style.display = 'none';
+        contactError.style.display = 'none';
+        
+        nameInput.classList.remove('highlight');
+        birthdayInput.classList.remove('highlight');
+        genderInput.classList.remove('highlight');
+        contactInput.classList.remove('highlight');
+      }
+      
+      // Form validation
+      function validateForm() {
+        let isValid = true;
+        clearErrors();
+        
+        // Validate name
+        if (!nameInput.value.trim()) {
+          nameError.style.display = 'block';
+          nameInput.classList.add('highlight');
+          isValid = false;
+        }
+        
+        // Validate birthday
+        if (!birthdayInput.value) {
+          birthdayError.style.display = 'block';
+          birthdayInput.classList.add('highlight');
+          isValid = false;
+        }
+        
+        // Validate gender
+        if (!genderInput.value) {
+          genderError.style.display = 'block';
+          genderInput.classList.add('highlight');
+          isValid = false;
+        }
+        
+        // Validate contact number
+        if (!contactInput.value || contactInput.value.length < 7) {
+          contactError.style.display = 'block';
+          contactInput.classList.add('highlight');
+          isValid = false;
+        }
+        
+        return isValid;
+      }
+      
+      // Form submission
+      memberForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        if (validateForm()) {
+          // In a real application, you would send this data to your server
+          const memberData = {
+            name: nameInput.value.trim(),
+            birthday: birthdayInput.value,
+            gender: genderInput.value,
+            contact: contactInput.value,
+            membership: document.querySelector('input[name="membership"]:checked').value
+          };
+          
+          console.log('Member data:', memberData);
+          
+          // Show success message
+          closeModal();
+          successMessage.className = 'success-message success';
+          successMessage.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <span>Member added successfully!</span>
+          `;
+          successMessage.classList.add('show');
+          
+          // Hide success message after 3 seconds
+          setTimeout(() => {
+            successMessage.classList.remove('show');
+          }, 3000);
+        }
+      });
+      
+      // Input event listeners to clear errors when user starts typing
+      nameInput.addEventListener('input', function() {
+        nameError.style.display = 'none';
+        nameInput.classList.remove('highlight');
+      });
+      
+      birthdayInput.addEventListener('input', function() {
+        birthdayError.style.display = 'none';
+        birthdayInput.classList.remove('highlight');
+      });
+      
+      genderInput.addEventListener('change', function() {
+        genderError.style.display = 'none';
+        genderInput.classList.remove('highlight');
+      });
+      
+      contactInput.addEventListener('input', function() {
+        contactError.style.display = 'none';
+        contactInput.classList.remove('highlight');
+      });
+      
+      // Set max date for birthday (no future dates)
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      birthdayInput.max = `${yyyy}-${mm}-${dd}`;
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    
+ 
+
+  .meeting-box h2 {
+    margin-top: 0;
+    color: #003d66;
+  }
+.meeting-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:15px;
+  margin-bottom:15px;
+}
+
+
+  
+.dash-content1 {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.overview .boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.box {  
+  flex: 1 1 250px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background: #000;
+  transition: transform 0.3s;
+}
+
+.box:hover {
+  transform: translateY(-5px);
+}
+
+.box .number {
+  display: block;
+  font-size: 40px;
+  font-weight: bold;
+  color: #000000;
+}
+
+.box .text {
+  font-size:35px;
+  color:#000;
+}
+
+/* Optional: Custom colors for each box */
+.box1 {
+  background-color: #d1e7dd;
+}
+
+.box2 {
+  background-color: #f8d7da;
+}
+
+.box3 {
+  background-color: #cfe2ff;
+}
+
+
+.meeting-box {
+  
+  
+  text-align: center;
+  border-radius: 8px;
+  margin: 20px auto;
+}
+.data-row {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.data-row:hover {
+  background-color: #e9f5ff;
+}
+
+.data-row .cell {
+  padding: 10px;
+  transition: transform 0.1s ease;
+}
+
+.data-row:hover .cell {
+  transform: scale(1.02);
+}
+   
+   .modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 40px;
+  border: 1px solid #888;
+  width: 95%; 
+  max-width: 650px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  
+}
+
+.close:hover {
+  color: red;
+}
+
+.profile-card p {
+  margin: 15px 0;
+  font-size: 18px;
+}
+
+hr {
+  border: none;
+  border-top: 3px solid black;
+  margin-top:10px;
+  margin-bottom:6px;
+
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 40px;
+  border: 1px solid #888;
+  width: 95%; 
+  max-width: 650px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.modal {
+    position: fixed; /* or absolute */
+    z-index: 1000; /* Higher than sticky div */
+}
+
+.sticky-div {
+    z-index: 100; /* Lower than modal */
+}
+
+.dashboard .top .search-box{
+    position: relative;
+    height: 45px;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 30px;
+}
+.top .search-box input{
+    position: absolute;
+    border: 1px solid var(--border-color);
+    background-color: var(--panel-color);
+    padding: 0 25px 0 50px;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+    color: var(--text-color);
+    font-size: 15px;
+    font-weight: 400;
+    outline: none;
+}
+.top .search-box i{
+    position: absolute;
+    left: 15px;
+    font-size: 22px;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--black-light-color);
+}
+
+</style>
+
+
+
+
+  <style>
+    :root {
+      --primary-color: #034c73;
+      --secondary-color: #f5f5dc;
+      --accent-color: #1a73e8;
+      --warning-color: #ff9800;
+      --text-color: #333;
+      --light-text: #666;
+      --border-color: #ddd;
+      --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .stats-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .stat-box {
+      flex: 1 1 250px;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: var(--box-shadow);
+      text-align: center;
+      transition: var(--transition);
+      background-color: #f5f5dc;
+      border-top: 5px solid var(--primary-color);
+    }
+
+    .stat-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-box .number {
+      display: block;
+      font-size: 40px;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .stat-box .text {
+      font-size: 25px;
+      color: #000;
+    }
+
+    .stat-box.members {
+      border-top-color: var(--primary-color);
+    }
+
+    .stat-box.paid {
+      border-top-color: var(--primary-color);
+    }
+
+    .stat-box.pending {
+      border-top-color: var(--primary-color);
+    }
+    
+    
+    
+    .attendance-high { 
+    color: #28a745; 
+    font-weight: bold; 
+    } 
+    
+    .attendance-low { 
+    color: #dc3545;
+     font-weight: bold; 
+     }
+    
+    
+    
+
+    @media (max-width: 768px) {
+      .stats-container {
+        flex-direction: column;
+      }
+
+      .stat-box {
+        flex: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+    <div class="stats-container">
+      <div class="stat-box members">
+        <span class="number">445</span>
+        <span class="text">Total Members</span>
+      </div>
+      <div class="stat-box paid">
+        <span class="number">332</span>
+        <span class="text">Active Memberships</span>
+      </div>
+      <div class="stat-box pending">
+        <span class="number">113</span>
+        <span class="text">Total NON-Membership</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+
+    
+    
+    
+  <div class="search-box">
+      <i class="uil uil-search"></i>
+      <input type="text" id="search-input" placeholder="Search here..." oninput="filterTable()">
+    </div>
+
+  <!-- Member Data Table -->
+  <div class="activity-data-table">
+    <div class="data-table-scroll">
+      <div class="data-row header">
+        <div class="cell">Name</div>
+        <div class="cell">Attendance (%)</div>
+        <div class="cell">Contribution (%)</div>
+      </div>
+      
+      
+<b>
+      <div class="data-row" onclick="handleRowClick('Juan Dela Cruz')">
+        <div class="cell">Juan Dela Cruz</div>
+        <div class="cell attendance-high">95%</div>
+        <div class="cell attendance-high">80%</div>
+      </div>
+      <div class="data-row" onclick="handleRowClick('Maria Santos')">
+        <div class="cell">Maria Santos</div>
+        <div class="cell attendance-high">88%</div>
+        <div class="cell attendance-high">90%</div>
+      </div>
+      <div class="data-row" onclick="handleRowClick('Pedro Reyes')">
+        <div class="cell">Pedro Reyes</div>
+        <div class="cell attendance-low">0%</div>
+        <div class="cell attendance-low">50%</div>
+      </div>
+      <div class="data-row" onclick="handleRowClick('Carmen Villanueva')">
+        <div class="cell">Carmen Villanueva</div>
+        <div class="cell attendance-high">98%</div>
+        <div class="cell attendance-high">100%</div>
+      </div>
+      <div class="data-row" onclick="handleRowClick('Roberto Mendoza')">
+        <div class="cell">Roberto Mendoza</div>
+        <div class="cell attendance-high">85%</div>
+        <div class="cell attendance-high">75%</div>
+      </div>
+      <div class="data-row" onclick="handleRowClick('Elena Bautista')">
+        <div class="cell">Elena Bautista</div>
+        <div class="cell attendance-low">40%</div>
+        <div class="cell attendance-low">35%</div>
+      </div>
+      <div class="data-row" onclick="handleRowClick('Antonio Fernandez')">
+        <div class="cell">Antonio Fernandez</div>
+        <div class="cell attendance-high">92%</div>
+        <div class="cell attendance-high">89%</div>
+      </div>
+      <div class="data-row" onclick="handleRowClick('Rodrigo Aquino')">
+        <div class="cell">Rodrigo Aquino</div>
+        <div class="cell attendance-high">90%</div>
+        <div class="cell attendance-high">89%</div>
+      </div>
+      <div class="data-row" onclick="handleRowClick('Gabriel Tolentino')">
+        <div class="cell">Gabriel Tolentino</div>
+        <div class="cell attendance-high">92%</div>
+        <div class="cell attendance-high">89%</div>
+      </div>
+      <div class="data-row" onclick="handleRowClick('Manuel Pascual')">
+        <div class="cell">Manuel Pascual</div>
+        <div class="cell attendance-high">100%</div>
+        <div class="cell attendance-high">88%</div>
+      </div>
+      <div class="data-row" onclick="handleRowClick('Lourdes Enriquez')">
+        <div class="cell">Lourdes Enriquez</div>
+        <div class="cell attendance-high">100%</div>
+        <div class="cell attendance-high">89%</div>
+      </div>
+      <div class="data-row" onclick="handleRowClick('Reynaldo Soriano')">
+        <div class="cell">Reynaldo Soriano</div>
+        <div class="cell attendance-high">92%</div>
+        <div class="cell attendance-high">89%</div>
+      </div>
+      <div class="data-row" onclick="handleRowClick('Isidro Romualdez')">
+        <div class="cell">Isidro Romualdez</div>
+        <div class="cell attendance-high">92%</div>
+        <div class="cell attendance-high">89%</div>
+      </div>
+      <div class="data-row" onclick="handleRowClick('Erlinda Manaloto')">
+        <div class="cell">Erlinda Manaloto</div>
+        <div class="cell attendance-high">92%</div>
+        <div class="cell attendance-high">89%</div>
+      </div>
+      <div class="data-row" onclick="handleRowClick('Bernardo Ocampo')">
+        <div class="cell">Bernardo Ocampo</div>
+        <div class="cell attendance-high">92%</div>
+        <div class="cell attendance-high">89%</div>
+      </div>
+      <div class="data-row" onclick="handleRowClick('Victoria Salcedo')">
+        <div class="cell">Victoria Salcedo</div>
+        <div class="cell attendance-high">92%</div>
+        <div class="cell attendance-high">89%</div>
+      </div>
+      
+      <div class="data-row" onclick="handleRowClick('Federico Aguilar')">
+        <div class="cell">Federico Aguilar</div>
+        <div class="cell attendance-high">92%</div>
+        <div class="cell attendance-high">89%</div>
+      </div>
+      <div class="data-row" onclick="handleRowClick('Corazon Dimaculangan')">
+        <div class="cell">Corazon Dimaculangan</div>
+        <div class="cell attendance-high">92%</div>
+        <div class="cell attendance-high">89%</div>
+      </div>
+
+     
+      
+      
+    </div>
+  </div>
+  
+  
+  
+    <!-- Add more rows as needed -->
+  </div>
+</div>
+
+
+
+
+</b>
+<script>
+    
+  document.getElementById("cancel-btn").addEventListener("click", () => {
+  window.history.back();
+});
+
+  
+    
+  function handleRowClick(name) {
+  const person = peopleData[name];
+  if (person) {
+    document.getElementById("profileName").textContent = name;
+    document.getElementById("profileBirthday").textContent = person.birthday;
+    document.getElementById("profileAge").textContent = person.age;
+    document.getElementById("profileGender").textContent = person.gender;
+    document.getElementById("profileContact").textContent = person.contact;
+    document.getElementById("profileStatus").textContent = person.status || "Non-Membership";
+    document.getElementById("profileStart").textContent = person.start;
+    document.getElementById("profileEnd").textContent = person.end;
+    
+    // Find the actual row clicked to get its displayed attendance and contribution values
+    const rows = document.querySelectorAll('.activity-data-table .data-row');
+    let clickedRow;
+    
+    rows.forEach(row => {
+      const nameCell = row.querySelector('.cell');
+      if (nameCell && nameCell.textContent === name) {
+        clickedRow = row;
+      }
+    });
+    
+    let attendanceValue = "N/A";
+    let contributionValue = "N/A";
+    
+    // If row was found, extract the displayed values
+    if (clickedRow) {
+      const cells = clickedRow.querySelectorAll('.cell');
+      if (cells.length >= 3) {
+        attendanceValue = cells[1].textContent;
+        contributionValue = cells[2].textContent;
+      }
+    } else {
+      // Fallback to person data if row not found
+      attendanceValue = person.attendance || "N/A";
+      contributionValue = person.contribution || "N/A";
+    }
+    
+    // Update profile with the attendance and contribution from the clicked row
+    document.getElementById("profileAttendance").textContent = attendanceValue;
+    document.getElementById("profileContribution").textContent = contributionValue;
+    
+    // Add appropriate styling classes based on attendance and contribution values
+    const attendanceSpan = document.getElementById("profileAttendance");
+    const contributionSpan = document.getElementById("profileContribution");
+    
+    // Remove any existing classes
+    attendanceSpan.classList.remove("attendance-high", "attendance-low");
+    contributionSpan.classList.remove("attendance-high", "attendance-low");
+    
+    // Add appropriate classes based on percentage values
+    if (attendanceValue && attendanceValue !== "N/A") {
+      const attValue = parseInt(attendanceValue);
+      if (attValue >= 70) {
+        attendanceSpan.classList.add("attendance-high");
+      } else {
+        attendanceSpan.classList.add("attendance-low");
+      }
+    }
+    
+    if (contributionValue && contributionValue !== "N/A") {
+      const contValue = parseInt(contributionValue);
+      if (contValue >= 70) {
+        contributionSpan.classList.add("attendance-high");
+      } else {
+        contributionSpan.classList.add("attendance-low");
+      }
+    }
+  }
+  document.getElementById("profileModal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("profileModal").style.display = "none";
+}
+
+
+</script>
+
+
+<script>
+    
+   function filterTable() {
+  const input = document.getElementById('search-input').value.toLowerCase();
+  const rows = document.querySelectorAll('.activity-data-table .data-row:not(.header)');
+  
+  
+  
+
+  rows.forEach(row => {
+    const nameCell = row.querySelector('.cell'); // assuming first cell is name
+    const name = nameCell.textContent.toLowerCase();
+
+    if (name.includes(input)) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+} 
+    
+    
+    
+</script>
+
+
+  </section>
+
+
+  
+
+
+
+<div id="profileModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="profile-card">
+      <p><strong>Name:</strong> <span id="profileName">Ricardo Cruz</span></p>
+      <p><strong>Birthday:</strong> <span id="profileBirthday">March 22, 1957</span></p>
+      <p><strong>Age:</strong> <span id="profileAge">68</span></p>
+      <p><strong>Gender:</strong> <span id="profileGender">Male</span></p>
+      <p><strong>Contact #:</strong> <span id="profileContact">0918-9876-543</span></p>
+      <p><strong>Status:</strong> <u><span id="profileStatus">Non-Membership</span></u></p>
+      <p><strong>Nagsugod:</strong> <span id="profileStart">April 9, 2024</span></p>
+      <p><strong>Mahuman:</strong> <span id="profileEnd">April 9, 2025</span></p>
+      <p><strong>Attendance:</strong> <span id="profileAttendance">80%</span></p>
+      <p><strong>Contribution:</strong> <span id="profileContribution">75%</span></p>
+      
+      <button id="editProfileBtn" class="edit-profile-btn" onclick="openEditModal()">Edit Profile</button>
+      
+      <style>
+        .edit-profile-btn {
+          display: block;
+          width: 100%;
+          padding: 12px;
+          margin-top: 20px;
+          background-color: #034c73;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+
+        .edit-profile-btn:hover {
+          background-color: #023854;
+        }
+      </style>
+   
+   <script>
+  // Sample data for each person
+  const peopleData = {
+    "Juan Dela Cruz": {
+      birthday: "June 12, 1960",
+      age: 65,
+      gender: "Male",
+      contact: "0918-1234-567",
+      status: "Member",
+      start: "January 15, 2023",
+      end: "January 15, 2026",
+      attendance: "95%",
+      contribution: "80%"
+    },
+    "Maria Santos": {
+      birthday: "September 3, 1975",
+      age: 50,
+      gender: "Female",
+      contact: "0917-8765-432",
+      status: "Member",
+      start: "March 10, 2023",
+      end: "March 10, 2026",
+      attendance: "88%",
+      contribution: "90%"
+    },
+    "Pedro Reyes": {
+      birthday: "April 18, 1982",
+      age: 43,
+      gender: "Male",
+      contact: "0919-3456-789",
+      status: "Non-Membership",
+      start: "May 20, 2024",
+      end: "May 20, 2025",
+      attendance: "0%",
+      contribution: "50%"
+    },
+    "Carmen Villanueva": {
+      birthday: "November 25, 1970",
+      age: 55,
+      gender: "Female",
+      contact: "0915-7890-123",
+      status: "Member",
+      start: "February 5, 2022",
+      end: "February 5, 2025",
+      attendance: "98%",
+      contribution: "100%"
+    },
+    "Roberto Mendoza": {
+      birthday: "July 7, 1965",
+      age: 60,
+      gender: "Male",
+      contact: "0916-4567-890",
+      status: "Member",
+      start: "June 12, 2023",
+      end: "June 12, 2026",
+      attendance: "85%",
+      contribution: "75%"
+    },
+    "Elena Bautista": {
+      birthday: "February 14, 1980",
+      age: 45,
+      gender: "Female",
+      contact: "0913-2345-678",
+      status: "Non-Membership",
+      start: "August 30, 2024",
+      end: "August 30, 2025",
+      attendance: "40%",
+      contribution: "35%"
+    },
+    "Antonio Fernandez": {
+      birthday: "October 10, 1968",
+      age: 57,
+      gender: "Male",
+      contact: "0914-8901-234",
+      status: "Member",
+      start: "April 15, 2022",
+      end: "April 15, 2025",
+      attendance: "92%",
+      contribution: "89%"
+    },
+              "Rodrigo Aquino": {
+      birthday: "Jan 1, 1972", age: 53, gender: "Male", contact: "0911-1234-789",
+      status: "Member", start: "Feb 12, 2023", end: "Feb 12, 2026",
+      attendance: "90%", contribution: "89%"
+    },
+    "Gabriel Tolentino": {
+      birthday: "May 5, 1980", age: 45, gender: "Male", contact: "0910-5678-234",
+      status: "Member", start: "Jul 9, 2023", end: "Jul 9, 2026",
+      attendance: "92%", contribution: "89%"
+    },
+    "Manuel Pascual": {
+      birthday: "Dec 30, 1984", age: 40, gender: "Male", contact: "0999-8888-777",
+      status: "Member", start: "Sep 10, 2022", end: "Sep 10, 2025",
+      attendance: "100%", contribution: "88%"
+    },
+    "Lourdes Enriquez": {
+      birthday: "Oct 29, 1960", age: 64, gender: "Female", contact: "0920-2222-333",
+      status: "Member", start: "Nov 1, 2021", end: "Nov 1, 2024",
+      attendance: "100%", contribution: "89%"
+    },
+    "Reynaldo Soriano": {
+      birthday: "Aug 8, 1977", age: 48, gender: "Male", contact: "0912-7777-555",
+      status: "Member", start: "Jan 5, 2022", end: "Jan 5, 2025",
+      attendance: "92%", contribution: "89%"
+    }
+  };
+  
+  
+  
+  
+  
+  
+  
+  
+
+  // This is a duplicate function that's not actually used - the one above is the active one
+  // Keeping it for reference but updated to match the working implementation
+  function handleRowClick(name, attendance, contribution) {
+    // Set the selected person's data to the profile modal
+    const person = peopleData[name] || {
+      birthday: "Unknown",
+      age: "Unknown",
+      gender: "Unknown",
+      contact: "Unknown",
+      status: "Unknown",
+      start: "Unknown",
+      end: "Unknown"
+    };
+    
+    // Update modal content with person's data
+    document.getElementById("profileName").textContent = name;
+    document.getElementById("profileBirthday").textContent = person.birthday;
+    document.getElementById("profileAge").textContent = person.age;
+    document.getElementById("profileGender").textContent = person.gender;
+    document.getElementById("profileContact").textContent = person.contact;
+    document.getElementById("profileStatus").textContent = person.status || "Non-Membership";
+    document.getElementById("profileStart").textContent = person.start;
+    document.getElementById("profileEnd").textContent = person.end;
+    
+    // Find the actual row clicked to get its displayed attendance and contribution values
+    const rows = document.querySelectorAll('.activity-data-table .data-row');
+    let clickedRow;
+    
+    rows.forEach(row => {
+      const nameCell = row.querySelector('.cell');
+      if (nameCell && nameCell.textContent === name) {
+        clickedRow = row;
+      }
+    });
+    
+    let attendanceValue = attendance || "N/A";
+    let contributionValue = contribution || "N/A";
+    
+    // If row was found and no attendance/contribution passed, extract the displayed values
+    if (clickedRow && (!attendance || !contribution)) {
+      const cells = clickedRow.querySelectorAll('.cell');
+      if (cells.length >= 3) {
+        attendanceValue = cells[1].textContent;
+        contributionValue = cells[2].textContent;
+      }
+    }
+    
+    // Update profile with the attendance and contribution
+    document.getElementById("profileAttendance").textContent = attendanceValue;
+    document.getElementById("profileContribution").textContent = contributionValue;
+    
+    // Add appropriate styling classes based on attendance and contribution values
+    const attendanceSpan = document.getElementById("profileAttendance");
+    const contributionSpan = document.getElementById("profileContribution");
+    
+    // Remove any existing classes
+    attendanceSpan.classList.remove("attendance-high", "attendance-low");
+    contributionSpan.classList.remove("attendance-high", "attendance-low");
+    
+    // Add appropriate classes based on percentage values
+    if (attendanceValue && attendanceValue !== "N/A") {
+      const attValue = parseInt(attendanceValue);
+      if (attValue >= 70) {
+        attendanceSpan.classList.add("attendance-high");
+      } else {
+        attendanceSpan.classList.add("attendance-low");
+      }
+    }
+    
+    if (contributionValue && contributionValue !== "N/A") {
+      const contValue = parseInt(contributionValue);
+      if (contValue >= 70) {
+        contributionSpan.classList.add("attendance-high");
+      } else {
+        contributionSpan.classList.add("attendance-low");
+      }
+    }
+    
+    // Display the modal
+    document.getElementById("profileModal").style.display = "block";
+  }
+
+  function closeModal() {
+    document.getElementById("profileModal").style.display = "none";
+  }
+
+  // Close modal when clicking outside
+  window.onclick = function(event) {
+    if (event.target == document.getElementById('profileModal')) {
+      closeModal();
+    }
+    if (event.target == document.getElementById('uploadModal')) {
+      closeModal1();
+    }
+  }
+</script>   
+
+<script>
+    
+    // Function to open the modal
+function openModal() {
+  document.getElementById('profileModal').style.display = 'block';
+}
+
+// Function to close the modal
+function closeModal() {
+  document.getElementById('profileModal').style.display = 'none';
+}
+
+// Optional: Close modal if clicking outside the modal
+window.onclick = function(event) {
+  if (event.target == document.getElementById('profileModal')) {
+    closeModal();
+  }
+}
+    
+</script>
+
+
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      
+    }
+
+    .year-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .arrow {
+      font-size: 24px;
+      background: #034c73;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      font-weight: bold;
+    }
+
+    .arrow:hover {
+      background: #023854;
+    }
+
+    .year-scroll {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      flex-grow: 1;
+      padding: 10px 0;
+      position: relative;
+    }
+
+    .year-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .year {
+      min-width: 80px;
+      padding: 12px 16px;
+      text-align: center;
+      background: #f5f5f5;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .year:hover {
+      background: #e9e9e9;
+      transform: scale(1.05);
+    }
+
+    .year.active {
+      background: #007bff;
+      color: white;
+      font-weight: bold;
+      transform: scale(1.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+    background-color: #f5f5dc;
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #fff;
+      color: black;
+    }
+
+    .overall-container {
+    
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .overall-grid {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      margin-top: 10px;
+    }
+
+    .overall-card {
+      background-color: #f5f5dc;
+      padding: 20px;
+      border-radius: 10px;
+      min-width: 100px;
+    }
+
+    .overall-main {
+    
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .overall-sub {
+    
+      margin-top: 5px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* Color Coding */
+    .green {
+      color: green;
+    }
+
+    .yellow {
+      color: orange;
+    }
+
+    .red {
+      color: red;
+    }
+    
+    hr {
+  border: none;
+  border-top: 3px solid black;
+  margin-top:10px;
+  margin-bottom:6px;
+
+}
+  </style>
+</head>
+
+<body>
+    
+    <hr>
+<label style="font-size: 16px; font-weight: bold; display: block; margin-bottom: 8px;">Select Year</label>
+<div class="year-wrapper">
+  <button class="arrow" onclick="scrollYears(-1)">‹</button>
+  <div class="year-scroll" id="yearScroll"></div>
+  <button class="arrow" onclick="scrollYears(1)">›</button>
+</div>
+
+<div id="dataContainer" class="data-container" style="display: none;">
+  <h3 id="selectedYearTitle" style="margin-top: -8px; margin-bottom: 12px; color: #034c73; font-size: 20px;"></h3>
+  <table id="attendanceTable">
+    <thead>
+      <tr>
+        <th>Month</th>
+        <th>Attendance</th>
+        <th>Contribution</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div class="overall-container">
+    <h3>Overall Participation</h3>
+    <div class="overall-grid">
+      <div class="overall-card">
+        <div class="overall-main" id="attendanceSummary">0/0</div>
+        <div class="overall-sub" id="attendancePercent">0% Attendance</div>
+      </div>
+      <div class="overall-card">
+        <div class="overall-main" id="contributionSummary">₱0 / ₱0</div>
+        <div class="overall-sub" id="contributionPercent">0% Contributions</div>
+      </div>
+    </div>
+  </div>
+  
+  <p style="text-align: center; font-size: 20px;"><u id="statusTitle">Non-Membership</u></p>  
+  <p style="text-align: center; font-size: 20px;"> <span style="font-size: 36px;">₱ 1,000</span> <br> Expected Death Benefit Payout</p>
+  
+  <script>
+    // Update the status title based on the profile status
+    function updateStatusTitle() {
+      const statusTitle = document.getElementById('statusTitle');
+      const profileStatus = document.getElementById('profileStatus');
+      if (profileStatus && statusTitle) {
+        statusTitle.textContent = profileStatus.textContent;
+      }
+    }
+    
+    // Add event listener to update status when profile modal is opened
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.data-row').forEach(row => {
+        row.addEventListener('click', function() {
+          setTimeout(updateStatusTitle, 100); // Short delay to ensure profile is loaded
+        });
+      });
+    });
+  </script>
+  <button onclick="document.getElementById('uploadModal').style.display='flex';" 
+          style="display: block; margin: 20px auto; padding: 12px 24px; font-size: 18px; background-color: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer;">
+      Deceased
+  </button>
+
+  <div id="uploadModal" style="display:none; position: fixed; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; font-family: 'Arial', sans-serif;">
+      <div style="background-color: #fff; padding: 40px; width: 650px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); text-align: center;">
+                      <h2 style="font-size: 28px; margin-bottom: 24px; color: #333;">Upload Proof of Death</h2>
+          
+                      <input type="file" id="proof-of-death" style="margin-bottom: 30px; padding: 12px; border: 1px solid #ccc; border-radius: 8px; width: 100%; font-size: 16px;" />
+          
+          <div style="display: flex; justify-content: space-between;">
+              <button onclick="uploadFile();" style="padding: 15px 30px; font-size: 18px; background-color: #4CAF50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                  Submit
+              </button>
+              <button onclick="closeModal1();" style="padding: 15px 30px; font-size: 18px; background-color: #f44336; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">
+                  Close
+              </button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script>
+    // Close modal function
+    function closeModal1() {
+        document.getElementById('uploadModal').style.display = 'none';
+    }
+
+    // File upload action
+    function uploadFile() {
+        let fileInput = document.getElementById('proof-of-death');
+        if (fileInput.files.length > 0) {
+            // Show success notification
+            const notification = document.createElement('div');
+            notification.className = 'success-message success';
+            notification.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <span>Death certificate uploaded successfully. Death benefit will be processed.</span>
+            `;
+            document.body.appendChild(notification);
+            
+            // Add show class after a small delay to trigger animation
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+            
+            closeModal1(); // Close modal after successful upload
+        } else {
+            // Show error notification
+            const notification = document.createElement('div');
+            notification.className = 'success-message error';
+            notification.innerHTML = `
+                <i class="fas fa-exclamation-circle"></i>
+                <span>Please select a file to upload.</span>
+            `;
+            document.body.appendChild(notification);
+            
+            // Add show class after a small delay to trigger animation
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+    }
+</script>
+
+
+<script>
+  const yearScroll = document.getElementById("yearScroll");
+  const startYear = 2025;
+  const endYear = 2035;
+  const yearList = [];
+  const months = ["January", "February", "March", "April", "May", "June",
+                  "July", "August", "September", "October", "November", "December"];
+
+  const yearData = {
+    2025: {
+      attendance: "Present",
+      contribution: 10,
+      totalContributionGoal: 120,
+      totalAttendanceGoal: 25,
+      actualAttendance: 22
+    },
+    2026: {
+      attendance: "Absent",
+      contribution: 0,
+      totalContributionGoal: 120,
+      totalAttendanceGoal: 25,
+      actualAttendance: 19
+    }
+  };
+
+  function createYearItems() {
+    yearScroll.innerHTML = ""; // clear content
+
+    const spacerWidth = yearScroll.offsetWidth / 2;
+
+    const spacerStart = document.createElement("div");
+    spacerStart.style.minWidth = `${spacerWidth}px`;
+    spacerStart.style.height = "1px";
+    yearScroll.appendChild(spacerStart);
+
+    for (let y = startYear; y <= endYear; y++) {
+      const yearDiv = document.createElement("div");
+      yearDiv.classList.add("year");
+      yearDiv.textContent = y;
+      yearDiv.dataset.value = y;
+      yearDiv.id = `year-${y}`; // Add id for easier selection
+      yearDiv.onclick = () => {
+        centerYear(yearDiv, true); // Pass true to indicate this is a direct click
+        showTable(parseInt(y));
+      };
+      yearScroll.appendChild(yearDiv);
+      yearList.push(yearDiv);
+    }
+
+    const spacerEnd = document.createElement("div");
+    spacerEnd.style.minWidth = `${spacerWidth}px`;
+    spacerEnd.style.height = "1px";
+    yearScroll.appendChild(spacerEnd);
+  }
+
+  function setActiveYear(selectedDiv) {
+    document.querySelectorAll(".year").forEach(el => el.classList.remove("active"));
+    selectedDiv.classList.add("active");
+  }
+
+  function centerYear(el, isDirectClick) {
+    if (!el) return;
+    const scrollLeft = el.offsetLeft - (yearScroll.offsetWidth / 2 - el.offsetWidth / 2);
+    yearScroll.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+    setActiveYear(el);
+    
+    // If this is a direct click, temporarily disable the scroll listener
+    if (isDirectClick) {
+      yearScroll.removeEventListener('scroll', scrollHandler);
+      setTimeout(() => {
+        yearScroll.addEventListener('scroll', scrollHandler);
+      }, 500); // Re-add listener after animation completes
+    }
+  }
+
+  function scrollYears(direction) {
+    // Get the currently active year
+    const activeYear = document.querySelector('.year.active');
+    if (!activeYear) {
+      // If no active year, select the first year
+      const firstYear = document.querySelector('.year');
+      if (firstYear) {
+        centerYear(firstYear, true);
+        showTable(parseInt(firstYear.dataset.value));
+      }
+      return;
+    }
+    
+    // Get the current year value
+    const currentYearValue = parseInt(activeYear.dataset.value);
+    
+    // Calculate target year value
+    const targetYearValue = currentYearValue + direction;
+    
+    // Check if target year is within range
+    if (targetYearValue >= startYear && targetYearValue <= endYear) {
+      // Find the target year element by its ID
+      const targetYear = document.getElementById(`year-${targetYearValue}`);
+      if (targetYear) {
+        // Center the target year
+        centerYear(targetYear, true);
+        showTable(targetYearValue);
+      }
+    }
+  }
+
+  function showTable(year) {
+    const dataContainer = document.getElementById("dataContainer");
+    const tableBody = document.querySelector("#attendanceTable tbody");
+    const yearTitle = document.getElementById("selectedYearTitle");
+
+    tableBody.innerHTML = "";
+    yearTitle.textContent = `Year: ${year}`;
+
+    months.forEach(month => {
+      const row = document.createElement("tr");
+
+      const attendance = yearData[year]?.attendance || "Unknown";
+      const contribution = yearData[year]?.contribution != null ? `₱${yearData[year].contribution}` : "₱0";
+
+      row.innerHTML = `
+        <td>${month}</td>
+        <td>${attendance}</td>
+        <td>${contribution}</td>
+      `;
+      tableBody.appendChild(row);
+    });
+
+    dataContainer.style.display = "block";
+
+    const attendanceGoal = yearData[year]?.totalAttendanceGoal || 0;
+    const actualAttendance = yearData[year]?.actualAttendance || 0;
+    const contributionGoal = yearData[year]?.totalContributionGoal || 0;
+    const actualContribution = (yearData[year]?.contribution || 0) * 12;
+
+    const attendancePercent = ((actualAttendance / attendanceGoal) * 100).toFixed(2);
+    const attendanceClass = getPercentageColor(attendancePercent);
+    document.getElementById("attendanceSummary").textContent = `${actualAttendance}/${attendanceGoal}`;
+    document.getElementById("attendancePercent").textContent = `${attendancePercent}% Attendances`;
+    document.getElementById("attendancePercent").classList.add(attendanceClass);
+
+    const contributionPercent = ((actualContribution / contributionGoal) * 100).toFixed(2);
+    const contributionClass = getPercentageColor(contributionPercent);
+    document.getElementById("contributionSummary").textContent = `₱${actualContribution} / ₱${contributionGoal}`;
+    document.getElementById("contributionPercent").textContent = `${contributionPercent}% Contributions`;
+    document.getElementById("contributionPercent").classList.add(contributionClass);
+  }
+
+  function getPercentageColor(percentage) {
+    if (percentage >= 90) return "green";
+    if (percentage >= 50) return "yellow";
+    return "red";
+  }
+
+  function selectCenterYear() {
+    const center = yearScroll.scrollLeft + yearScroll.offsetWidth / 2;
+    let closest = null;
+    let minDistance = Infinity;
+
+    document.querySelectorAll('.year').forEach(el => {
+      const elCenter = el.offsetLeft + el.offsetWidth / 2;
+      const distance = Math.abs(center - elCenter);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closest = el;
+      }
+    });
+
+    if (closest) {
+      centerYear(closest, false);
+      showTable(parseInt(closest.dataset.value));
+    }
+  }
+
+  // Create a named function for the scroll handler so we can remove it
+  function scrollHandler() {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      // Skip auto-centering if a direct click just happened
+      if (!yearScroll.hasAttribute('data-clicking')) {
+        selectCenterYear();
+      }
+    }, 150);
+  }
+
+  let scrollTimeout;
+  yearScroll.addEventListener('scroll', scrollHandler);
+
+  window.addEventListener("load", () => {
+    createYearItems();
+    const firstYear = document.querySelector('.year[data-value="2025"]');
+    if (firstYear) {
+      centerYear(firstYear, false);
+      showTable(2025);
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    const active = document.querySelector('.year.active');
+    const activeYear = active ? active.dataset.value : null;
+
+    yearList.length = 0;
+    createYearItems();
+
+    if (activeYear) {
+      const match = [...document.querySelectorAll('.year')].find(
+        y => y.dataset.value === activeYear
+      );
+      if (match) centerYear(match, false);
+    }
+  });
+</script>
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+    
+<!-- Chat Widget -->
+<div class="chat-widget" id="chat-widget">
+    <div class="chat-bubble" id="chat-bubble">
+        <i>💬</i>
+    </div>
+    
+    <div class="chat-container" id="chat-container">
+        <div class="chat-header">
+            <div class="chat-title">
+                <span class="status-indicator"></span>
+                AI Assistant
+            </div>
+            <div class="chat-close" id="chat-close">×</div>
+        </div>
+        
+        <div class="chat-messages" id="chat-messages">
+            <div class="message-container bot-container">
+                <div class="message bot-message">
+                    Maayong adlaw! Ako imong AI assistant. Unsay akong ikatabang nimo karon?
+                </div>
+                <span class="timestamp">Now</span>
+            </div>
+            
+            <div class="typing-indicator" id="typing-indicator">
+                <div class="typing-bubble"></div>
+                <div class="typing-bubble"></div>
+                <div class="typing-bubble"></div>
+            </div>
+        </div>
+        
+        <div class="chat-input">
+            <textarea class="chat-input-field" id="chat-input-field" placeholder="I-type imong mensahe..." rows="1"></textarea>
+            <button class="chat-send-btn" id="chat-send-btn">➤</button>
+        </div>
+    </div>
+</div>
+
+ 
+ 
+ <script src="../js/chatbot.js"></script>
+      
+ 
+   
+</body>
+
+
+
+</html>
+<div id="editModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Edit Profile</h2>
+        <span class="close" onclick="closeEditModal()">&times;</span>
+      </div>
+      
+      <form id="editForm">
+        <div class="form-group">
+          <label for="editName">Full Name</label>
+          <input type="text" id="editName" placeholder="Enter complete name">
+          <div class="error-message" id="editNameError">Please enter your full name</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="editBirthday">Birthday</label>
+          <input type="date" id="editBirthday">
+          <div class="error-message" id="editBirthdayError">Please select your birthday</div>
+        </div>
+
+        <div class="form-group">
+          <label for="editAge">Age</label>
+          <input type="number" id="editAge" readonly>
+        </div>
+        
+        <div class="form-group">
+          <label for="editGender">Gender</label>
+                  <select id="editGender">
+          <option value="">Select gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+          <div class="error-message" id="editGenderError">Please select your gender</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="editContact">Contact Number</label>
+          <input type="number" id="editContact" placeholder="Enter contact number">
+          <div class="error-message" id="editContactError">Please enter a valid contact number</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="editStart">Nagsugod</label>
+          <input type="date" id="editStart">
+          <div class="error-message" id="editStartError">Please select start date</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="editEnd">Mahuman</label>
+          <input type="date" id="editEnd">
+          <div class="error-message" id="editEndError">Please select end date</div>
+        </div>
+        
+        <div class="btn-container">
+          <button type="button" class="btn btn-cancel" onclick="closeEditModal()">Cancel</button>
+          <button type="submit" class="btn btn-add">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<script>
+// Add these helper functions
+function formatDateForInput(dateStr) {
+  if (!dateStr) return '';
+  
+  try {
+    // Try to parse various date formats
+    let date;
+    
+    if (dateStr.includes('/')) {
+      // Format like MM/DD/YYYY
+      const parts = dateStr.split('/');
+      if (parts.length === 3) {
+        date = new Date(parts[2], parts[0] - 1, parts[1]);
+      } else {
+        date = new Date(dateStr);
+      }
+    } else if (dateStr.includes(',')) {
+      // Format like "Month Day, Year"
+      date = new Date(dateStr);
+    } else {
+      date = new Date(dateStr);
+    }
+    
+    if (isNaN(date.getTime())) {
+      return '';
+    }
+    
+    // Format as YYYY-MM-DD for input[type="date"]
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    
+    return `${year}-${month}-${day}`;
+  } catch (e) {
+    console.error('Date parsing error:', e);
+    return '';
+  }
+}
+
+function calculateAge(birthday) {
+  const birthDate = new Date(birthday);
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+  
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  
+  return age;
+}
+
+// Add event listener for edit button
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('editProfileBtn').addEventListener('click', openEditModal);
+  
+  // Add birthday change listener to update age
+  document.getElementById('editBirthday').addEventListener('change', function() {
+    const age = calculateAge(this.value);
+    document.getElementById('editAge').value = age;
+  });
+});
+
+function openEditModal() {
+  const editModal = document.getElementById('editModal');
+  const profileModal = document.getElementById('profileModal');
+  const currentName = document.getElementById('profileName').textContent;
+  const person = peopleData[currentName] || {
+    birthday: "",
+    age: "",
+    gender: "",
+    contact: "",
+    status: "",
+    start: "",
+    end: ""
+  };
+  
+  // Populate form fields
+  document.getElementById('editName').value = currentName;
+  document.getElementById('editBirthday').value = formatDateForInput(person.birthday);
+  document.getElementById('editAge').value = person.age;
+  document.getElementById('editGender').value = person.gender;
+  document.getElementById('editContact').value = person.contact;
+  document.getElementById('editStart').value = formatDateForInput(person.start);
+  document.getElementById('editEnd').value = formatDateForInput(person.end);
+  
+  // Close profile modal and open edit modal
+  profileModal.style.display = 'none';
+  editModal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeEditModal() {
+  document.getElementById('editModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+function clearEditErrors() {
+  const errorElements = document.querySelectorAll('#editForm .error-message');
+  const inputElements = document.querySelectorAll('#editForm input, #editForm select');
+  
+  errorElements.forEach(error => error.style.display = 'none');
+  inputElements.forEach(input => input.classList.remove('highlight'));
+}
+
+function clearEditForm() {
+  document.getElementById('editForm').reset();
+}
+
+function validateEditForm() {
+  let isValid = true;
+  clearEditErrors();
+  
+  // Validate name
+  const nameInput = document.getElementById('editName');
+  if (!nameInput.value.trim()) {
+    document.getElementById('editNameError').style.display = 'block';
+    nameInput.classList.add('highlight');
+    isValid = false;
+  }
+  
+  // Validate birthday
+  const birthdayInput = document.getElementById('editBirthday');
+  if (!birthdayInput.value) {
+    document.getElementById('editBirthdayError').style.display = 'block';
+    birthdayInput.classList.add('highlight');
+    isValid = false;
+  }
+  
+  // Validate gender
+  const genderInput = document.getElementById('editGender');
+  if (!genderInput.value) {
+    document.getElementById('editGenderError').style.display = 'block';
+    genderInput.classList.add('highlight');
+    isValid = false;
+  }
+  
+  // Validate contact
+  const contactInput = document.getElementById('editContact');
+  if (!contactInput.value || contactInput.value.length < 7) {
+    document.getElementById('editContactError').style.display = 'block';
+    contactInput.classList.add('highlight');
+    isValid = false;
+  }
+  
+  // Validate dates
+  const startInput = document.getElementById('editStart');
+  const endInput = document.getElementById('editEnd');
+  
+  if (!startInput.value) {
+    document.getElementById('editStartError').style.display = 'block';
+    startInput.classList.add('highlight');
+    isValid = false;
+  }
+  
+  if (!endInput.value) {
+    document.getElementById('editEndError').style.display = 'block';
+    endInput.classList.add('highlight');
+    isValid = false;
+  }
+  
+  return isValid;
+}
+
+// Add form submission handler
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('editForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    if (validateEditForm()) {
+      const name = document.getElementById('editName').value.trim();
+      const birthday = document.getElementById('editBirthday').value;
+      const age = document.getElementById('editAge').value;
+      const gender = document.getElementById('editGender').value;
+      const contact = document.getElementById('editContact').value;
+      const start = document.getElementById('editStart').value;
+      const end = document.getElementById('editEnd').value;
+      
+      // Update the data
+      peopleData[name] = {
+        birthday: new Date(birthday).toLocaleDateString(),
+        age: parseInt(age),
+        gender: gender,
+        contact: contact,
+        start: new Date(start).toLocaleDateString(),
+        end: new Date(end).toLocaleDateString()
+      };
+      
+      // Update the profile modal
+      document.getElementById('profileName').textContent = name;
+      document.getElementById('profileBirthday').textContent = peopleData[name].birthday;
+      document.getElementById('profileAge').textContent = peopleData[name].age;
+      document.getElementById('profileGender').textContent = gender;
+      document.getElementById('profileContact').textContent = contact;
+      document.getElementById('profileStart').textContent = peopleData[name].start;
+      document.getElementById('profileEnd').textContent = peopleData[name].end;
+      
+      // Show success message
+      const notification = document.createElement('div');
+      notification.className = 'success-message success';
+      notification.innerHTML = `
+        <i class="fas fa-check-circle"></i>
+        <span>Profile updated successfully!</span>
+      `;
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.classList.add('show');
+      }, 100);
+      
+      setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+          notification.remove();
+        }, 300);
+      }, 3000);
+      
+      closeEditModal();
+    }
+  });
+
+  // Set max date for birthday (no future dates)
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+  document.getElementById('editBirthday').max = `${yyyy}-${mm}-${dd}`;
+});
+
+// Update window click handler
+window.onclick = function(event) {
+  const editModal = document.getElementById('editModal');
+  const profileModal = document.getElementById('profileModal');
+  const uploadModal = document.getElementById('uploadModal');
+  
+  if (event.target == editModal) {
+    closeEditModal();
+  }
+  if (event.target == profileModal) {
+    closeModal();
+  }
+  if (event.target == uploadModal) {
+    closeModal1();
+  }
+}
+</script>
+
+<script>
+// Add event listeners after DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM loaded, binding edit profile button');
+  
+  // Explicitly bind edit profile button click event
+  const editBtn = document.getElementById('editProfileBtn');
+  if (editBtn) {
+    editBtn.addEventListener('click', function() {
+      console.log('Edit button clicked');
+      openEditModal();
+    });
+  } else {
+    console.error('Edit profile button not found in DOM');
+  }
+  
+  // Bind form submission
+  const editForm = document.getElementById('editForm');
+  if (editForm) {
+    editForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      console.log('Form submitted');
+      
+      if (validateEditForm()) {
+        // Save changes
+        const name = document.getElementById('editName').value.trim();
+        const birthday = document.getElementById('editBirthday').value;
+        const age = document.getElementById('editAge').value;
+        const gender = document.getElementById('editGender').value;
+        const contact = document.getElementById('editContact').value;
+        const start = document.getElementById('editStart').value;
+        const end = document.getElementById('editEnd').value;
+        
+        // Update data object
+        peopleData[name] = {
+          birthday: new Date(birthday).toLocaleDateString(),
+          age: parseInt(age),
+          gender: gender,
+          contact: contact,
+          status: document.getElementById('profileStatus').textContent, // Preserve status
+          start: new Date(start).toLocaleDateString(),
+          end: new Date(end).toLocaleDateString()
+        };
+        
+        // Update profile view
+        document.getElementById('profileName').textContent = name;
+        document.getElementById('profileBirthday').textContent = peopleData[name].birthday;
+        document.getElementById('profileAge').textContent = peopleData[name].age;
+        document.getElementById('profileGender').textContent = gender;
+        document.getElementById('profileContact').textContent = contact;
+        document.getElementById('profileStart').textContent = peopleData[name].start;
+        document.getElementById('profileEnd').textContent = peopleData[name].end;
+        
+        // Show success message
+        showNotification('Profile updated successfully!', 'success');
+        
+        // Close modal
+        closeEditModal();
+      }
+    });
+  }
+  
+  // Update age when birthday changes
+  const birthdayInput = document.getElementById('editBirthday');
+  if (birthdayInput) {
+    birthdayInput.addEventListener('change', function() {
+      const age = calculateAge(this.value);
+      document.getElementById('editAge').value = age;
+    });
+  }
+});
+
+// Helper function to show notifications
+function showNotification(message, type = 'success') {
+  const notification = document.createElement('div');
+  notification.className = `success-message ${type}`;
+  notification.innerHTML = `
+    <i class="fas fa-${type === 'success' ? 'check' : 'exclamation'}-circle"></i>
+    <span>${message}</span>
+  `;
+  document.body.appendChild(notification);
+  
+  setTimeout(() => {
+    notification.classList.add('show');
+  }, 100);
+  
+  setTimeout(() => {
+    notification.classList.remove('show');
+    setTimeout(() => {
+      notification.remove();
+    }, 300);
+  }, 3000);
+}
+
+// ... existing code ...
+</script>
+

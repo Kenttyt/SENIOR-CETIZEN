@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/chatbot.css">
+     
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>Senior Citizen </title> 
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="../img/logo.jpg" alt="">
+            </div>
+
+            <span class="logo_name">SmartSenior
+            </span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="index.html">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Meetings</span>
+                </a></li>
+                <li><a href="members.html">
+              <i class="uil uil-users-alt"></i>
+                    <span class="link-name">Members</span>
+                </a></li>
+                <li><a href="financialmanagement.html">
+                    <i class="uil uil-chart"></i>
+                    <span class="link-name">Financial Management </span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-thumbs-up"></i>
+                    <span class="link-name">Feedbacks</span>
+                </a></li>
+                <li><a href="messages.html">
+                    <i class="uil uil-comments"></i>
+                    <span class="link-name">Messages</span>
+                </a></li>
+         
+            </ul>
+            
+            <ul class="logout-mode">
+                <li><a href="#">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Logout</span>
+                </a></li>
+
+                
+
+                <div class="mode-toggle">
+                  <span class="switch"></span>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+            <div id="current-date" class="current-date"></div>
+            
+
+
+
+
+
+
+
+
+
+            
+        </div>
+        
+        
+        
+        
+        
+               <style>
+           
+          
+           
+
+.overview .boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.box {
+  flex: 1 1 250px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background: #f5f5f5;
+  transition: transform 0.3s;
+}
+
+.box:hover {
+  transform: translateY(-5px);
+}
+
+
+
+
+
+           
+           
+       </style>
+       
+       
+        
+        
+            
+            
+            
+            <hr>
+            
+
+  <style>
+    
+    .sc-feedback-system * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    
+    
+    .sc-feedback-system .header-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 30px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .sc-feedback-system .main-header {
+      font-size: clamp(1.2rem, 5vw, 2.5rem);
+      text-align: center;
+      word-break: break-word;
+      margin: 0.5em 0;
+    }
+
+    @media (max-width: 400px) {
+      .sc-feedback-system .main-header {
+        padding: 0 1rem;
+      }
+    }
+
+    .controls{
+       margin-top: 40px;
+        
+    }
+    .sc-feedback-system .controls {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    .sc-feedback-system .filter-dropdown, 
+    .sc-feedback-system .search-box {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+      background-color: white;
+    }
+
+    .sc-feedback-system .search-box {
+      flex-grow: 1;
+    }
+
+    .sc-feedback-system .mood-filter {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    .sc-feedback-system .mood-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 15px;
+      border-radius: 20px;
+      border: none;
+      background-color: #f1f1f1;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .sc-feedback-system .mood-btn.active {
+      background-color: #e3f2fd;
+      font-weight: bold;
+    }
+
+    .sc-feedback-system .mood-btn:hover {
+      background-color: #e3e3e3;
+    }
+
+    .sc-feedback-system .mood-btn i {
+      font-size: 30px;
+    }
+
+    .sc-feedback-system .happy-btn i {
+      color: #ffb400;
+    }
+
+    .sc-feedback-system .neutral-btn i {
+      color: #888888;
+    }
+
+    .sc-feedback-system .sad-btn i {
+      color: #0077ff;
+    }
+
+    .sc-feedback-system .feedback-list {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      height: 65vh;
+      overflow-y: auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+    }
+
+    .sc-feedback-system .feedback-card {
+      background-color: #fff8c6;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      text-align: left;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease;
+      position: relative;
+    }
+
+    .sc-feedback-system .feedback-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    }
+
+    .sc-feedback-system .date{
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #555;
+    }
+
+    .sc-feedback-system .date strong {
+      color: #000000;
+    }
+    
+    .sc-feedback-system .name{
+      font-size: 30px;
+      margin-bottom: 8px;
+      color: #000000;
+    }
+
+    .sc-feedback-system .message {
+      background-color: #f9f9f9;
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-size: 20px;
+      line-height: 1.5;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .sc-feedback-system .mood {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .sc-feedback-system .mood i {
+      font-size: 40px;
+    }
+
+    .sc-feedback-system .happy i {
+      color: #ffb400;
+    }
+
+    .sc-feedback-system .neutral i {
+      color: #888888;
+    }
+
+    .sc-feedback-system .sad i {
+      color: #0077ff;
+    }
+
+    .sc-feedback-system .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 20px;
+    }
+
+    .sc-feedback-system .page-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: white;
+      border: 1px solid #ddd;
+      cursor: pointer;
+    }
+
+    .sc-feedback-system .page-btn.active {
+      background-color: #0077ff;
+      color: white;
+      border-color: #0077ff;
+    }
+
+    .sc-feedback-system .page-btn:not(.active):hover {
+      background-color: #f1f1f1;
+    }
+
+    .sc-feedback-system .empty-state {
+      text-align: center;
+      padding: 40px 0;
+      color: #888;
+    }
+
+    .sc-feedback-system .empty-state i {
+      font-size: 48px;
+      margin-bottom: 15px;
+      color: #ccc;
+    }
+
+    .sc-feedback-system .action-buttons {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: flex;
+      gap: 5px;
+    }
+
+    .sc-feedback-system .action-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.7);
+      transition: all 0.2s ease;
+    }
+
+    .sc-feedback-system .action-btn:hover {
+      background-color: rgba(255, 255, 255, 1);
+    }
+
+    .sc-feedback-system .action-btn.edit:hover {
+      color: #0077ff;
+    }
+
+    .sc-feedback-system .action-btn.delete:hover {
+      color: #ff3b30;
+    }
+
+    .sc-feedback-system .loading {
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    .sc-feedback-system .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border-left-color: #0077ff;
+      animation: sc-feedback-spin 1s linear infinite;
+      margin: 0 auto 15px;
+    }
+
+    @keyframes sc-feedback-spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .sc-feedback-system .form-container {
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .sc-feedback-system .form-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    .sc-feedback-system .form-group {
+      margin-bottom: 15px;
+    }
+
+    .sc-feedback-system .form-label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      color: #555;
+    }
+
+    .sc-feedback-system .form-input, 
+    .sc-feedback-system .form-textarea, 
+    .sc-feedback-system .form-select {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+    }
+
+    .sc-feedback-system .form-textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .sc-feedback-system .mood-selector {
+      display: flex;
+      gap: 15px;
+      margin-top: 5px;
+      flex-wrap: wrap;
+    }
+
+    .sc-feedback-system .mood-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      opacity: 0.5;
+      transition: all 0.2s ease;
+    }
+
+    .sc-feedback-system .mood-option.selected {
+      opacity: 1;
+    }
+
+    .sc-feedback-system .mood-option i {
+      font-size: 30px;
+      margin-bottom: 5px;
+    }
+
+    .sc-feedback-system .submit-btn {
+      background-color: #0077ff;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .sc-feedback-system .submit-btn:hover {
+      background-color: #0066dd;
+    }
+
+    .sc-feedback-system .cancel-btn {
+      background-color: #f1f1f1;
+      color: #333;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-right: 10px;
+      transition: background-color 0.2s ease;
+    }
+
+    .sc-feedback-system .cancel-btn:hover {
+      background-color: #e3e3e3;
+    }
+
+    .sc-feedback-system .button-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+
+    .sc-feedback-system .add-feedback-btn {
+      background-color: #0077ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.2s ease;
+    }
+
+    .sc-feedback-system .add-feedback-btn:hover {
+      background-color: #0066dd;
+    }
+
+    /* Responsive design */
+    @media screen and (max-width: 768px) {
+      .sc-feedback-system .header-section {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .sc-feedback-system .add-feedback-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .sc-feedback-system .controls {
+        flex-direction: column;
+      }
+      
+      .sc-feedback-system .filter-dropdown, 
+      .sc-feedback-system .search-box {
+        width: 100%;
+      }
+      
+      .sc-feedback-system .feedback-list {
+        height: 60vh;
+      }
+      
+      .sc-feedback-system .mood-filter {
+        justify-content: space-between;
+      }
+      
+      .sc-feedback-system .mood-btn {
+        flex: 1;
+        justify-content: center;
+        padding: 8px 5px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .sc-feedback-system .main-header {
+        font-size: 20px;
+      }
+      
+      .sc-feedback-system .feedback-card {
+        padding: 12px;
+      }
+      
+      .sc-feedback-system .message {
+        font-size: 23px;
+      }
+      
+      .sc-feedback-system .mood-option {
+        padding: 5px;
+      }
+      
+      .sc-feedback-system .form-container {
+        padding: 15px;
+      }
+      
+      .sc-feedback-system .button-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .sc-feedback-system .cancel-btn, 
+      .sc-feedback-system .submit-btn {
+        width: 100%;
+        margin: 0;
+      }
+    }
+  </style>
+ 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Main container with scoped class -->
+<div class="sc-feedback-system">
+  <div class="header-section">
+    <h1 class="main-header">Feedbacks/Concerns from Senior Citizen Members</h1>
+    
+  </div>
+
+<!-- Form container - hidden by default -->
+  <div class="form-container" id="formContainer" style="display:none;">
+    <h2 class="form-title">Add New Feedback</h2>
+    <form id="feedbackForm">
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-input" id="nameInput" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Feedback/Concern</label>
+        <textarea class="form-textarea" id="messageInput" required></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">How do you feel?</label>
+        <div class="mood-selector">
+          <div class="mood-option" data-mood="happy">
+            <i class="fas fa-smile" style="color: #ffb400;"></i>
+            <span>Happy</span>
+          </div>
+          <div class="mood-option" data-mood="neutral">
+            <i class="fas fa-meh" style="color: #888888;"></i>
+            <span>Neutral</span>
+          </div>
+          <div class="mood-option" data-mood="sad">
+            <i class="fas fa-frown" style="color: #0077ff;"></i>
+            <span>Sad</span>
+          </div>
+        </div>
+        <input type="hidden" id="moodInput" value="neutral">
+      </div>
+      <div class="button-container">
+        <button type="button" class="cancel-btn" id="cancelBtn">Cancel</button>
+        <button type="submit" class="submit-btn">Submit Feedback</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="controls">
+    <select class="filter-dropdown" id="sortFilter">
+      <option value="newest">Newest First</option>
+      <option value="oldest">Oldest First</option>
+      <option value="nameAsc">Name (A-Z)</option>
+      <option value="nameDesc">Name (Z-A)</option>
+    </select>
+    <input type="text" class="search-box" id="searchInput" placeholder="Search by name or keyword...">
+  </div>
+
+  <div class="mood-filter">
+    <button class="mood-btn active" data-filter="all">
+      <i class="fas fa-th"></i> All
+    </button>
+    <button class="mood-btn happy-btn" data-filter="happy">
+      <i class="fas fa-smile"></i> Happy
+    </button>
+    <button class="mood-btn neutral-btn" data-filter="neutral">
+      <i class="fas fa-meh"></i> Neutral
+    </button>
+    <button class="mood-btn sad-btn" data-filter="sad">
+      <i class="fas fa-frown"></i> Sad
+    </button>
+  </div>
+
+  <div class="feedback-list" id="feedbackList">
+    <!-- Feedback cards will be generated here -->
+  </div>
+
+  <div class="pagination" id="pagination">
+    <!-- Pagination buttons will be generated here -->
+  </div>
+</div>
+
+<script>
+
+  (function() {
+    const feedbackData = [
+      {
+        id: 1,
+        date: "April 23, 2024",
+        name: "Ricardo Cruz",
+        message: "Mas sayon na ang pag-apil sa miting tungod sa QR code, salamat.",
+        mood: "happy"
+      },
+      {
+        id: 2,
+        date: "April 24, 2024",
+        name: "Maria Lopez",
+        message: "Okay ra ang proseso pero pwede pa mapauswag gamay.",
+        mood: "neutral"
+      },
+      {
+        id: 3,
+        date: "April 25, 2024",
+        name: "Juan Dela Cruz",
+        message: "Naglisod ko og gamit sa QR code, nanginahanglan ko og tabang.",
+        mood: "sad"
+      },
+      {
+        id: 4,
+        date: "April 26, 2024",
+        name: "Elena Reyes",
+        message: "Nakadawat ko sa akong pension sa saktong panahon, salamat kaayo.",
+        mood: "happy"
+      },
+      {
+        id: 5,
+        date: "April 27, 2024",
+        name: "Pedro Santos",
+        message: "Ang mga staff kay maabiabihon kaayo. Nalipay ko sa ilang pagtabang.",
+        mood: "happy"
+      },
+      {
+        id: 6,
+        date: "April 28, 2024",
+        name: "Lucia Garcia",
+        message: "Dugay kaayo ang pila sa rehistrasyon, pwede ba ni mapalambo?",
+        mood: "neutral"
+      },
+      {
+        id: 7,
+        date: "April 29, 2024",
+        name: "Carlos Lim",
+        message: "Wala ko kasabot sa mga instruksiyon sa form, kinahanglan mas klaro.",
+        mood: "sad"
+      },
+      {
+        id: 8,
+        date: "April 30, 2024",
+        name: "Rosario Tan",
+        message: "Nalipay ko sa bag-ong programa para sa senior citizens, salamat.",
+        mood: "happy"
+      },
+      {
+        id: 9,
+        date: "May 1, 2024",
+        name: "Antonio Flores",
+        message: "Lab you",
+        mood: "happy"
+      },
+      {
+        id: 10,
+        date: "May 2, 2024",
+        name: "Carmen Bautista",
+        message: "Gusto ko magpasalamat sa inyong paningkamot, pero naa pay mga butang nga mapalambo.",
+        mood: "neutral"
+      },
+      {
+        id: 11,
+        date: "May 3, 2024",
+        name: "Roberto Diaz",
+        message: "Ang online registration kay dako kaayong tabang para nako nga dili na kinahanglan moadto sa opisina.",
+        mood: "happy"
+      },
+      {
+        id: 12,
+        date: "May 4, 2024",
+        name: "Teresita Reyes",
+        message: "Naglisod ko og access sa website gamit ang akong karaang cellphone.",
+        mood: "sad"
+      }
+    ];
+
+    const feedbackList = document.getElementById('feedbackList');
+    const pagination = document.getElementById('pagination');
+    const searchInput = document.getElementById('searchInput');
+    const sortFilter = document.getElementById('sortFilter');
+    const moodButtons = document.querySelectorAll('.mood-btn');
+    const formContainer = document.getElementById('formContainer');
+
+    const cancelBtn = document.getElementById('cancelBtn');
+    const feedbackForm = document.getElementById('feedbackForm');
+    const moodOptions = document.querySelectorAll('.mood-option');
+
+    let currentPage = 1;
+    const itemsPerPage = 5;
+    let currentFilter = 'all';
+    let searchTerm = '';
+    let sortBy = 'newest';
+    let editingId = null;
+
+   
+
+    cancelBtn.addEventListener('click', () => {
+      formContainer.style.display = 'none';
+      editingId = null;
+    });
+
+    moodOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        moodOptions.forEach(opt => opt.classList.remove('selected'));
+        option.classList.add('selected');
+        document.getElementById('moodInput').value = option.dataset.mood;
+      });
+    });
+
+    feedbackForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('nameInput').value;
+      const message = document.getElementById('messageInput').value;
+      const mood = document.getElementById('moodInput').value;
+      const currentDate = new Date();
+      const formattedDate = `${currentDate.toLocaleString('default', { month: 'long' })} ${currentDate.getDate()}, ${currentDate.getFullYear()}`;
+
+      const newFeedback = {
+        id: editingId || feedbackData.length + 1,
+        date: formattedDate,
+        name: name,
+        message: message,
+        mood: mood
+      };
+
+      if (editingId) {
+        const index = feedbackData.findIndex(item => item.id === editingId);
+        if (index !== -1) {
+          feedbackData[index] = newFeedback;
+        }
+        editingId = null;
+      } else {
+        feedbackData.unshift(newFeedback);
+      }
+
+      formContainer.style.display = 'none';
+      renderFeedbacks();
+    });
+
+    moodButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        moodButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        currentFilter = button.dataset.filter;
+        currentPage = 1;
+        renderFeedbacks();
+      });
+    });
+
+    searchInput.addEventListener('input', () => {
+      searchTerm = searchInput.value.toLowerCase();
+      currentPage = 1;
+      renderFeedbacks();
+    });
+
+    sortFilter.addEventListener('change', () => {
+      sortBy = sortFilter.value;
+      renderFeedbacks();
+    });
+
+    function editFeedback(id) {
+      const feedback = feedbackData.find(item => item.id === id);
+      if (feedback) {
+        document.getElementById('nameInput').value = feedback.name;
+        document.getElementById('messageInput').value = feedback.message;
+
+        moodOptions.forEach(option => {
+          option.classList.remove('selected');
+          if (option.dataset.mood === feedback.mood) {
+            option.classList.add('selected');
+            document.getElementById('moodInput').value = feedback.mood;
+          }
+        });
+
+        editingId = id;
+        formContainer.style.display = 'block';
+        formContainer.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function deleteFeedback(id) {
+      if (confirm('Are you sure you want to delete this feedback?')) {
+        const index = feedbackData.findIndex(item => item.id === id);
+        if (index !== -1) {
+          feedbackData.splice(index, 1);
+          renderFeedbacks();
+        }
+      }
+    }
+
+    function resetForm() {
+      document.getElementById('nameInput').value = '';
+      document.getElementById('messageInput').value = '';
+
+      moodOptions.forEach(option => option.classList.remove('selected'));
+      const neutralOption = document.querySelector('.mood-option[data-mood="neutral"]');
+      if (neutralOption) {
+        neutralOption.classList.add('selected');
+        document.getElementById('moodInput').value = 'neutral';
+      }
+
+      editingId = null;
+    }
+
+    function renderFeedbacks() {
+      let filteredData = feedbackData;
+
+      if (currentFilter !== 'all') {
+        filteredData = filteredData.filter(item => item.mood === currentFilter);
+      }
+
+      if (searchTerm) {
+        filteredData = filteredData.filter(item => 
+          item.name.toLowerCase().includes(searchTerm) || 
+          item.message.toLowerCase().includes(searchTerm)
+        );
+      }
+
+      switch(sortBy) {
+        case 'newest':
+          break;
+        case 'oldest':
+          filteredData = [...filteredData].reverse();
+          break;
+        case 'nameAsc':
+          filteredData = [...filteredData].sort((a, b) => a.name.localeCompare(b.name));
+          break;
+        case 'nameDesc':
+          filteredData = [...filteredData].sort((a, b) => b.name.localeCompare(a.name));
+          break;
+      }
+
+      const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const paginatedData = filteredData.slice(startIndex, startIndex + itemsPerPage);
+
+      feedbackList.innerHTML = '';
+
+      if (paginatedData.length === 0) {
+        feedbackList.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-search"></i>
+            <p>No feedbacks found</p>
+          </div>
+        `;
+        pagination.innerHTML = '';
+        return;
+      }
+
+      paginatedData.forEach(item => {
+        const feedbackCard = document.createElement('div');
+        feedbackCard.className = 'feedback-card';
+
+        feedbackCard.innerHTML = `
+          <div class="date"><strong>${item.date}</strong>
+          <div class="name">| ${item.name} </div></div>
+          <div class="message">${item.message}</div>
+          <div class="mood ${item.mood}">
+            <span>${item.mood.toUpperCase()}</span>
+            <i class="fas fa-${item.mood === 'happy' ? 'smile' : item.mood === 'neutral' ? 'meh' : 'frown'}"></i>
+          </div>
+        `;
+
+        feedbackList.appendChild(feedbackCard);
+      });
+
+      renderPagination(totalPages);
+    }
+
+    function renderPagination(totalPages) {
+      pagination.innerHTML = '';
+      if (totalPages <= 1) return;
+
+      if (currentPage > 1) {
+        const prevBtn = document.createElement('div');
+        prevBtn.className = 'page-btn';
+        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+        prevBtn.addEventListener('click', () => {
+          currentPage--;
+          renderFeedbacks();
+        });
+        pagination.appendChild(prevBtn);
+      }
+
+      for (let i = 1; i <= totalPages; i++) {
+        const pageBtn = document.createElement('div');
+        pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+        pageBtn.textContent = i;
+        pageBtn.addEventListener('click', () => {
+          currentPage = i;
+          renderFeedbacks();
+        });
+        pagination.appendChild(pageBtn);
+      }
+
+      if (currentPage < totalPages) {
+        const nextBtn = document.createElement('div');
+        nextBtn.className = 'page-btn';
+        nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+        nextBtn.addEventListener('click', () => {
+          currentPage++;
+          renderFeedbacks();
+        });
+        pagination.appendChild(nextBtn);
+      }
+    }
+
+    // Initialize the system and expose only necessary functions
+    window.scFeedbackSystem = {
+      editFeedback: editFeedback,
+      deleteFeedback: deleteFeedback
+    };
+
+    document.querySelector('.mood-option[data-mood="neutral"]').classList.add('selected');
+    renderFeedbacks();
+  })();
+</script>
+
+
+
+
+
+
+
+<!-- Chat Widget -->
+<div class="chat-widget" id="chat-widget">
+    <div class="chat-bubble" id="chat-bubble">
+        <i>💬</i>
+    </div>
+    
+    <div class="chat-container" id="chat-container">
+        <div class="chat-header">
+            <div class="chat-title">
+                <span class="status-indicator"></span>
+                AI Assistant
+            </div>
+            <div class="chat-close" id="chat-close">×</div>
+        </div>
+        
+        <div class="chat-messages" id="chat-messages">
+            <div class="message-container bot-container">
+                <div class="message bot-message">
+                    Maayong adlaw! Ako imong AI assistant. Unsay akong ikatabang nimo karon?
+                </div>
+                <span class="timestamp">Now</span>
+            </div>
+            
+            <div class="typing-indicator" id="typing-indicator">
+                <div class="typing-bubble"></div>
+                <div class="typing-bubble"></div>
+                <div class="typing-bubble"></div>
+            </div>
+        </div>
+        
+        <div class="chat-input">
+            <textarea class="chat-input-field" id="chat-input-field" placeholder="I-type imong mensahe..." rows="1"></textarea>
+            <button class="chat-send-btn" id="chat-send-btn">➤</button>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="../js/script.js"></script>
+<script src="../js/chatbot.js"></script>
+</body>
+</html> 
+        
+        

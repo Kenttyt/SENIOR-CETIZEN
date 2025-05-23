@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/chatbot.css">
+     
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>Senior Citizen </title> 
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="../img/logo.jpg" alt="">
+            </div>
+
+            <span class="logo_name">SmartSenior
+            </span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="index.html">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Meetings</span>
+                </a></li>
+                <li><a href="members.html">
+              <i class="uil uil-users-alt"></i>
+                    <span class="link-name">Members</span>
+                </a></li>
+                <li><a href="financialmanagement.html">
+                    <i class="uil uil-chart"></i>
+                    <span class="link-name">Financial Management </span>
+                </a></li>
+                <li><a href="feedbacks.html">
+                    <i class="uil uil-thumbs-up"></i>
+                    <span class="link-name">Feedbacks</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-comments"></i>
+                    <span class="link-name">Messages</span>
+                </a></li>
+         
+            </ul>
+            
+            <ul class="logout-mode">
+                <li><a href="#">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Logout</span>
+                </a></li>
+
+                
+
+                <div class="mode-toggle">
+                  <span class="switch"></span>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+            <div id="current-date" class="current-date"></div>
+            
+              
+        
+
+            
+            
+        </div>
+        
+
+        
+
+<!-- Insert this inside your page -->
+<div class="flex-container">
+  <div class="message-card">
+    <h2>Send Message</h2>
+
+    <label>Date</label>
+    <input type="date" id="date">
+
+    <label>Time</label>
+    <input type="time" id="time">
+
+    <label>Place</label>
+    <input type="text" id="place" placeholder="e.g., Covered Court GYM Kinamayan">
+
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <div class="container" id="sampleContainer">
+    <div class="title" style="color: #fff;">Sample Text</div>
+    <div class="content">
+      Maayong Adlaw <span class="underline"><em>Name</em></span>!<br>
+      Naa tay meeting<br>
+      <span class="underline"><em id="sampleDateTimeSpan">April 13, Sunday,<br>1:00 PM</em></span><br>
+      sa <span class="underline"><em id="samplePlaceSpan">Covered Court GYM Kinamayan</em></span>.<br>
+      Payable Missing Monthly Contributions: ₱<span class="underline"><em>amount</em></span>
+    </div>
+  </div>
+</div>
+
+<div id="confirmationBox" class="confirmation-box" style="display: none;">
+  Message successfully sent!
+</div>
+
+<div id="errorBox" class="error-box" style="display: none;">
+  Please fill out all fields before sending the message.
+</div>
+
+<style>
+  .flex-container {
+    display: flex;
+    gap: 0;
+    width: 100%;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+
+  .message-card {
+    background: #ffffff;
+    padding: 25px;
+    width: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 10px 0 0 10px;
+    min-width: 300px;
+    flex: 1;
+  }
+
+  .container {
+    background-color: #034c73;
+    padding: 20px;
+    width: 50%;
+    margin-top: 0;
+    position: relative;
+    border-radius: 0 10px 10px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    min-width: 300px;
+    flex: 1;
+  }
+
+  h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-weight: 600;
+    color: #34495e;
+    display: block;
+    margin-top: 10px;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  input[type="time"],
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+
+  .dropdown {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .dropdown-button {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .dropdown-panel {
+    display: none;
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    max-height: 180px;
+    overflow-y: auto;
+    z-index: 10;
+  }
+
+  .dropdown.open .dropdown-panel {
+    display: block;
+  }
+
+  #memberSearch {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  .dropdown-panel label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: normal;
+    cursor: pointer;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #023854;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #023854;
+  }
+  
+  .confirmation-box {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 6px;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .error-box {
+    margin-top: 10px;
+    padding: 15px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 6px;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .title {
+    font-weight: bold;
+    padding: 10px;
+    font-size: clamp(18px, 2vw, 20px);
+    color: #023854;
+  }
+
+  .content {
+    border: 2px solid black;
+    padding: 20px;
+    margin-top: 10px;
+    background-color: white;
+    font-size: clamp(16px, 2vw, 24px);
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+  }
+
+  em {
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .underline {
+    text-decoration: underline;
+    color: #023854;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff5252;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  
+  .close-button:hover {
+    background-color: #ff0000;
+  }
+
+  .notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1200;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: translateX(120%);
+    transition: transform 0.3s ease;
+    max-width: 300px;
+  }
+
+  .notification.error {
+    background-color: #fde8e8;
+    border-left: 4px solid #dc3545;
+    color: #dc3545;
+  }
+
+  .notification.success {
+    background-color: #e8f5e9;
+    border-left: 4px solid #4caf50;
+    color: #2e7d32;
+  }
+
+  .notification.show {
+    transform: translateX(0);
+  }
+
+  .notification i {
+    font-size: 20px;
+  }
+
+  /* Responsive styles */
+  @media screen and (max-width: 768px) {
+    .flex-container {
+      flex-direction: column;
+      width: 100%;
+      padding: 0 15px;
+      box-sizing: border-box;
+    }
+
+    .message-card, .container {
+      width: 100%;
+      border-radius: 10px;
+      margin: 10px 0;
+      min-width: 100%;
+    }
+
+    .content {
+      padding: 15px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .flex-container {
+      margin-top: 20px;
+      padding: 0 10px;
+    }
+
+    .message-card, .container {
+      padding: 15px;
+    }
+
+    .content {
+      padding: 10px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+  }
+</style>
+
+<script>
+  function showNotification(message, type = 'success') {
+    const notification = document.getElementById('notification');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
+      <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+      <span>${message}</span>
+    `;
+    notification.classList.add('show');
+    
+    setTimeout(() => {
+      notification.classList.remove('show');
+    }, 3000);
+  }
+
+  function sendMessage() {
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value;
+    const place = document.getElementById("place").value;
+
+    if (!date || !time || !place) {
+      showNotification('Please fill out all fields before sending the message.', 'error');
+      return;
+    }
+
+    const message = `Meeting scheduled on ${date} at ${time} in ${place}.`;
+
+    // Clear fields
+    document.getElementById("date").value = "";
+    document.getElementById("time").value = "";
+    document.getElementById("place").value = "";
+
+    showNotification('Message successfully sent!', 'success');
+  }
+  
+  function updateSampleText() {
+    // Get input values
+    const dateValue = document.getElementById("date").value;
+    const timeValue = document.getElementById("time").value;
+    const placeValue = document.getElementById("place").value || "Place";
+    
+    // Format the date if provided
+    let formattedDate = "Date";
+    if (dateValue) {
+      const date = new Date(dateValue);
+      const options = { month: 'long', day: 'numeric', weekday: 'long' };
+      formattedDate = date.toLocaleDateString('en-US', options);
+    }
+    
+    // Format the time if provided
+    let formattedTime = "Time";
+    if (timeValue) {
+      const timeParts = timeValue.split(':');
+      let hours = parseInt(timeParts[0]);
+      const minutes = timeParts[1];
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      formattedTime = hours + ':' + minutes + ' ' + ampm;
+    }
+    
+    // Update the sample text content
+    document.getElementById("sampleDateTimeSpan").innerHTML = formattedDate + ",<br>" + formattedTime;
+    document.getElementById("samplePlaceSpan").innerHTML = placeValue;
+  }
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    const sidebarToggle = document.querySelector(".sidebar-toggle");
+    const nav = document.querySelector("nav");
+    const dashboard = document.querySelector(".dashboard");
+    
+    function toggleSidebar() {
+        nav.classList.toggle("open");
+        dashboard.classList.toggle("nav-open");
+        
+        // Give time for the transition to complete
+        setTimeout(() => {
+            window.dispatchEvent(new Event('resize'));
+        }, 300);
+    }
+    
+    sidebarToggle.addEventListener("click", toggleSidebar);
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener("click", (e) => {
+        if (window.innerWidth <= 768) {
+            if (!nav.contains(e.target) && !sidebarToggle.contains(e.target)) {
+                nav.classList.remove("open");
+                dashboard.classList.remove("nav-open");
+                
+                // Give time for the transition to complete
+                setTimeout(() => {
+                    window.dispatchEvent(new Event('resize'));
+                }, 300);
+            }
+        }
+    });
+
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener("resize", () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            if (window.innerWidth > 768) {
+                nav.classList.remove("open");
+                dashboard.classList.remove("nav-open");
+            }
+        }, 250);
+    });
+
+    // Your existing event listeners...
+    document.getElementById("date").addEventListener("change", updateSampleText);
+    document.getElementById("time").addEventListener("change", updateSampleText);
+    document.getElementById("place").addEventListener("input", updateSampleText);
+  });
+</script>
+
+<!-- Chat Widget -->
+<div class="chat-widget" id="chat-widget">
+    <div class="chat-bubble" id="chat-bubble">
+        <i>💬</i>
+    </div>
+    
+    <div class="chat-container" id="chat-container">
+        <div class="chat-header">
+            <div class="chat-title">
+                <span class="status-indicator"></span>
+                AI Assistant
+            </div>
+            <div class="chat-close" id="chat-close">×</div>
+        </div>
+        
+        <div class="chat-messages" id="chat-messages">
+            <div class="message-container bot-container">
+                <div class="message bot-message">
+                    Maayong adlaw! Ako imong AI assistant. Unsay akong ikatabang nimo karon?
+                </div>
+                <span class="timestamp">Now</span>
+            </div>
+            
+            <div class="typing-indicator" id="typing-indicator">
+                <div class="typing-bubble"></div>
+                <div class="typing-bubble"></div>
+                <div class="typing-bubble"></div>
+            </div>
+        </div>
+        
+        <div class="chat-input">
+            <textarea class="chat-input-field" id="chat-input-field" placeholder="I-type imong mensahe..." rows="1"></textarea>
+            <button class="chat-send-btn" id="chat-send-btn">➤</button>
+        </div>
+    </div>
+</div>
+
+<div id="notification" class="notification"></div>
+
+<script src="../js/script.js"></script>
+<script src="../js/chatbot.js"></script>
+
+<style>
+  @media (max-width: 480px) {
+    .dashboard {
+      padding: 10px;
+    }
+    nav.open {
+      width: 100%;
+    }
+    .dashboard.nav-open {
+      left: 100%;
+      width: 0;
+    }
+  }
+</style>
+</body>
+</html>

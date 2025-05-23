@@ -367,20 +367,23 @@
     }
     
     #scanned-result {
-      margin-top: 15px;
+      margin: 15px auto;
       font-size: 1.2em;
-      word-wrap: break-word;
-      overflow: hidden;
-      padding: 10px;
-      max-width: 100%;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      padding: 12px;
+      max-width: 95%;
       text-align: center;
-      color: black;
+      color: #000000 !important;
       white-space: normal;
       display: block;
-      width: 100%;
+      width: calc(100% - 24px);
       box-sizing: border-box;
       background-color: #f9f9f9;
       border-radius: 8px;
+      min-height: 50px;
+      border: 1px solid #e0e0e0;
+      line-height: 1.4;
     }
     button {
       padding: 12px 20px;
@@ -551,7 +554,9 @@
       }
       #scanned-result {
         font-size: 1.1em;
-        padding: 8px;
+        padding: 10px;
+        margin: 12px auto;
+        line-height: 1.3;
       }
     }
 
@@ -589,7 +594,9 @@
       }
       #scanned-result {
         font-size: 1em;
-        padding: 5px;
+        padding: 8px;
+        margin: 10px auto;
+        line-height: 1.2;
       }
     }
 
@@ -674,20 +681,23 @@
 
     /* Improved scanned-result responsiveness */
     #scanned-result {
-      margin-top: 15px;
+      margin: 15px auto;
       font-size: 1.2em;
-      word-wrap: break-word;
-      overflow: hidden;
-      padding: 10px;
-      max-width: 100%;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      padding: 12px;
+      max-width: 95%;
       text-align: center;
-      color: black;
+      color: #000000 !important;
       white-space: normal;
       display: block;
-      width: 100%;
+      width: calc(100% - 24px);
       box-sizing: border-box;
       background-color: #f9f9f9;
       border-radius: 8px;
+      min-height: 50px;
+      border: 1px solid #e0e0e0;
+      line-height: 1.4;
     }
   </style>
     
@@ -944,7 +954,12 @@
       if (scannedText !== currentScannedValue) {
         currentScannedValue = scannedText;
         const isDuplicate = scannedNames.has(scannedText);
-        document.getElementById("scanned-result").textContent = `Name: ${scannedText}`;
+        
+        // Ensure text is properly displayed and doesn't overflow
+        const displayText = scannedText.length > 30 ? 
+          `${scannedText.substring(0, 30)}...` : scannedText;
+          
+        document.getElementById("scanned-result").innerHTML = `<span style="color: #000000;">Name: ${displayText}</span>`;
         document.getElementById("modal-name").textContent = `Name: ${scannedText}`;
         document.getElementById("duplicate-warning").style.display = isDuplicate ? "block" : "none";
         openModal();
@@ -1012,7 +1027,7 @@
     function closeModal() {
       currentScannedValue = "";
       document.getElementById("contribution-modal").style.display = "none";
-      document.getElementById("scanned-result").textContent = "Scan a QR code";
+      document.getElementById("scanned-result").innerHTML = '<span style="color: #000000;">Scan a QR code</span>';
     }
 
     function exportToPDF() {
